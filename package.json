@@ -1,0 +1,11 @@
+{
+  "name": "turner-proyect",
+  "version": "1.0.0",
+  "description": "application to manage shifts",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Falces Alexis",
+  "license": "ISC"
+}

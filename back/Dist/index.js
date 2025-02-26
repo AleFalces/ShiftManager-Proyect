@@ -1,7 +1,6 @@
 "use strict";
-const num1 = 5;
-const num2 = 3;
-const sumar = (a, b) => {
-    return a + b;
-};
-console.log(sumar(num1, num2));
+const express = require("express");
+const server = express();
+server.listen(3000, () => {
+    console.log("server lisen in port 3000");
+});

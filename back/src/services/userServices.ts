@@ -22,6 +22,10 @@ export let createUsersServices = async (userData: IUserDto): Promise<IUser> => {
   return newUser;
 };
 
-export let updateUsersServices = async () => {};
+export let updateUsersServices = async () => {
+  return "User updated";
+};
 
-export let deleteUsersServices = async () => {};
+export let deleteUsersServices = async () => {
+  return "User deleted";
+};

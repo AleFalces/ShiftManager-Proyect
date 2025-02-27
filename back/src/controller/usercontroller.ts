@@ -17,6 +17,12 @@ export let createUsers = async (req: Request, res: Response) => {
   res.status(201).json(newUser);
 };
 
-export let updateUsers = async () => {};
+export let updateUsers = async (req: Request, res: Response) => {
+  let userChanges: string = await updateUsersServices();
+  res.status(200).send(userChanges);
+};
 
-export let deleteUsers = async () => {};
+export let deleteUsers = async (req: Request, res: Response) => {
+  let deletedUser: string = await deleteUsersServices();
+  res.status(200).send(deletedUser);
+};

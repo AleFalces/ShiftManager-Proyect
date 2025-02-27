@@ -1,9 +1,14 @@
 import { Router } from "express";
-import { createUsers, getUsers } from "../controller/usercontroller";
+import {
+  createUsers,
+  deleteUsers,
+  getUsers,
+  updateUsers,
+} from "../controller/usercontroller";
 
 export let userRouter = Router();
 
 userRouter.get("/", getUsers);
 userRouter.post("/", createUsers);
-userRouter.put("/");
-userRouter.delete("/");
+userRouter.put("/", updateUsers);
+userRouter.delete("/", deleteUsers);

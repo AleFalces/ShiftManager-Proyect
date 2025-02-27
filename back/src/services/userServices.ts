@@ -7,7 +7,9 @@ let users: IUser[] = [];
 
 let id: number = 1;
 
-export let getUsersServices = async () => {};
+export let getUsersServices = (): IUser[] => {
+  return users;
+};
 export let createUsersServices = async (userData: IUserDto): Promise<IUser> => {
   const newUser: IUser = {
     id,

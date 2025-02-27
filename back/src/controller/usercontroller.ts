@@ -4,10 +4,13 @@ import {
   updateUsersServices,
   deleteUsersServices,
   createUsersServices,
-} from "../services";
+} from "../services/userServices";
 import IUser from "../interfaces/IUser";
 
-export let getUsers = async () => {};
+export let getUsers = async (req: Request, res: Response) => {
+  let allUsers: IUser[] = await getUsersServices();
+  res.status(200).json(allUsers);
+};
 export let createUsers = async (req: Request, res: Response) => {
   const { name, email, active } = req.body;
   const newUser: IUser = await createUsersServices({ name, email, active });

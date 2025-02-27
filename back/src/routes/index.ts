@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
-import { createUsers } from "../controller/usercontroller";
+import { userRouter } from "./userRoutes";
+import { turnRouter } from "./TurnsRoutes";
 
 const router: Router = Router();
 
-router.post("/users", createUsers);
-router.get("/users");
-router.put("/users");
-router.delete("/users");
+router.use("/users", userRouter);
+router.use("/turns", turnRouter);
+
 export default router;

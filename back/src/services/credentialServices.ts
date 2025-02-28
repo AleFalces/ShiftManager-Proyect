@@ -1,7 +1,7 @@
 import ICredentialDot from "../Dto/CredentialDto";
 import Icredemtial from "../interfaces/ICredentials";
 
-let credential: Icredemtial[] = [];
+export const credential: Icredemtial[] = [];
 
 let id: number = 1;
 

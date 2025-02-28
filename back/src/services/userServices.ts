@@ -3,15 +3,20 @@ import IUserDto from "../Dto/UserDto";
 import IUser from "../interfaces/IUser";
 import { createCredentialServise } from "./credentialServices";
 
-//como no tengo DB tengo q pushear los usuarios en un arreglo de ususarios
-
 let users: IUser[] = [];
 
-let id: number = 1;
+let id: string = "1";
 let credentialsId: number = 1;
 
 export let getUsersServices = async (): Promise<IUser[]> => {
   return users;
+};
+
+export let getUserByIServices = async (
+  id: string
+): Promise<IUser | undefined> => {
+  let userById = users.find((user) => user.id === id);
+  return userById;
 };
 
 export let createUsersServices = async (
@@ -27,7 +32,7 @@ export let createUsersServices = async (
     credentialsId: createCredential.id,
   };
   users.push(newUser);
-  id++;
+  id = "1" + credentialsId++;
   credentialsId++;
   return newUser;
 };

@@ -1,14 +1,15 @@
 import { Router } from "express";
 import {
   createTurn,
-  getTurn,
+  getAllTurn,
   deleteTurn,
   updateTurn,
 } from "../controller/turnsController";
+import { validateUser } from "../middlewares/validUser";
 
 export const turnRouter = Router();
 
-turnRouter.get("/", getTurn);
-turnRouter.post("/", createTurn);
+turnRouter.get("/", getAllTurn);
+turnRouter.post("/", validateUser, createTurn);
 turnRouter.put("/", updateTurn);
 turnRouter.delete("/", deleteTurn);

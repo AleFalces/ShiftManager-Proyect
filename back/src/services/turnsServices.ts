@@ -1,5 +1,9 @@
-export let getTurnServices = async () => {
-  return "send turn";
+import { Iturn } from "../interfaces/ITurns";
+
+export let turns: Iturn[] = [];
+
+export let getAllTurnServices = async (): Promise<Iturn[]> => {
+  return turns;
 };
 export let createTurnServices = async () => {
   return "created turn";

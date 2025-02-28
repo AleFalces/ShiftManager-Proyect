@@ -3,7 +3,7 @@ import IUserDto from "../Dto/UserDto";
 import IUser from "../interfaces/IUser";
 import { createCredentialServise } from "./credentialServices";
 
-let users: IUser[] = [];
+export let users: IUser[] = [];
 
 let id: string = "1";
 let credentialsId: number = 1;

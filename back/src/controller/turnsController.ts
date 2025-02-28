@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import {
-  getTurnServices,
+  getAllTurnServices,
   createTurnServices,
   updateTurnServices,
   deleteTurnServices,
 } from "../services/turnsServices";
+import { Iturn } from "../interfaces/ITurns";
 
-export let getTurn = async (req: Request, res: Response) => {
-  let turn: string = await getTurnServices();
+export let getAllTurn = async (req: Request, res: Response) => {
+  let turn: Iturn[] = await getAllTurnServices();
   res.status(200).send(turn);
 };
 export let createTurn = async (req: Request, res: Response) => {

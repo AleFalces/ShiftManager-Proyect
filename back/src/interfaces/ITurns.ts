@@ -4,7 +4,7 @@ enum EStatus {
 }
 
 export interface Iturn {
-  id: number;
+  id: string;
   date: Date;
   time: string;
   userId: number;

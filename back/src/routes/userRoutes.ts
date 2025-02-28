@@ -6,12 +6,12 @@ import {
   updateUsers,
   getUserById,
 } from "../controller/userController";
-import { validateUser } from "../middlewares/validCredentials";
+import { validateCredentials } from "../middlewares/validCredentials";
 
 export let userRouter = Router();
 
 userRouter.get("/", getUsers);
-userRouter.get("/:id", validateUser, getUserById);
+userRouter.get("/:id", validateCredentials, getUserById);
 userRouter.post("/", createUsers);
 userRouter.put("/", updateUsers);
 userRouter.delete("/", deleteUsers);

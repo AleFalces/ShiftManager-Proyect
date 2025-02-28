@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { credential } from "../services/credentialServices";
 
-export const validateUser = (
+export const validateCredentials = (
   req: Request,
   res: Response,
   next: NextFunction

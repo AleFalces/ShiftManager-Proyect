@@ -4,7 +4,7 @@ import {
   deleteUsers,
   getUsers,
   updateUsers,
-} from "../controller/usercontroller";
+} from "../controller/userController";
 
 export let userRouter = Router();
 

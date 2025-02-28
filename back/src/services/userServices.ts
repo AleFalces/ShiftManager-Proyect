@@ -6,8 +6,9 @@ import IUser from "../interfaces/IUser";
 let users: IUser[] = [];
 
 let id: number = 1;
+let credentialsId: number = 1;
 
-export let getUsersServices = (): IUser[] => {
+export let getUsersServices = async (): Promise<IUser[]> => {
   return users;
 };
 export let createUsersServices = async (userData: IUserDto): Promise<IUser> => {
@@ -15,10 +16,12 @@ export let createUsersServices = async (userData: IUserDto): Promise<IUser> => {
     id,
     name: userData.name,
     email: userData.email,
-    active: userData.active,
+    phone: userData.phone,
+    credentialsId,
   };
   users.push(newUser);
   id++;
+  credentialsId++;
   return newUser;
 };
 

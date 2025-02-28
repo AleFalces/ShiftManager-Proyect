@@ -6,14 +6,15 @@ import {
   createUsersServices,
 } from "../services/userServices";
 import IUser from "../interfaces/IUser";
+import IUserDto from "../Dto/UserDto";
 
 export let getUsers = async (req: Request, res: Response) => {
   let allUsers: IUser[] = await getUsersServices();
   res.status(200).json(allUsers);
 };
 export let createUsers = async (req: Request, res: Response) => {
-  const { name, email, active } = req.body;
-  const newUser: IUser = await createUsersServices({ name, email, active });
+  const { name, email, phone } = req.body;
+  const newUser: IUser = await createUsersServices({ name, email, phone });
   res.status(201).json(newUser);
 };
 

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import {
   getUsersServices,
   updateUsersServices,
@@ -7,17 +7,25 @@ import {
   getUserByIServices,
 } from "../services/userServices";
 import IUser from "../interfaces/IUser";
+import catchErros from "../utils/utils";
 
 export let getUsers = async (req: Request, res: Response) => {
   let allUsers: IUser[] = await getUsersServices();
   res.status(200).json(allUsers);
 };
 
-export let getUserById = async (req: Request, res: Response) => {
+export let getUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
   let UsersById = await getUserByIServices(id);
-  console.log(UsersById);
-  res.status(200).json(UsersById);
+  if (UsersById === null || UsersById === undefined) {
+    next({ message: "User not Found", statusCode: 400 });
+  } else {
+    res.status(200).json(UsersById);
+  }
 };
 
 export let createUsers = async (req: Request, res: Response) => {
@@ -41,4 +49,10 @@ export let updateUsers = async (req: Request, res: Response) => {
 export let deleteUsers = async (req: Request, res: Response) => {
   let deletedUser: string = await deleteUsersServices();
   res.status(200).send(deletedUser);
+};
+
+export default {
+  getUsers: catchErros(getUsers),
+  getUserById: catchErros(getUserById),
+  createUsers: catchErros(createUsers),
 };

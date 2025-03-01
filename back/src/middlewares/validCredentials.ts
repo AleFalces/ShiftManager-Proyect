@@ -12,9 +12,9 @@ export const validateCredentials = (
     if (user.password === password) {
       next();
     } else {
-      res.status(400).send("Invalid password");
+      next({ message: "Invalid password", statusCode: 400 });
     }
   } else {
-    res.status(400).send("nombre de usuario incorrecto");
+    next({ message: "Invalid username", statusCode: 400 });
   }
 };

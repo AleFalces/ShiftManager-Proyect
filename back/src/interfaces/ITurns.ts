@@ -1,6 +1,6 @@
-enum EStatus {
+export enum EStatus {
   AVAILABLE = "available",
-  RESERVED = " reserved",
+  RESERVED = "reserved",
 }
 
 export interface Iturn {

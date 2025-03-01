@@ -1,10 +1,54 @@
-import { Iturn } from "../interfaces/ITurns";
+import { EStatus, Iturn } from "../interfaces/ITurns";
 
-export let turns: Iturn[] = [];
+export let turns: Iturn[] = [
+  {
+    id: "1",
+    date: new Date("2025-03-01T10:00:00"),
+    time: "10:00 AM",
+    userId: 101,
+    status: EStatus.AVAILABLE,
+  },
+  {
+    id: "2",
+    date: new Date("2025-03-01T11:00:00"),
+    time: "11:00 AM",
+    userId: 102,
+    status: EStatus.RESERVED,
+  },
+  {
+    id: "3",
+    date: new Date("2025-03-01T12:00:00"),
+    time: "12:00 PM",
+    userId: 103,
+    status: EStatus.AVAILABLE,
+  },
+  {
+    id: "4",
+    date: new Date("2025-03-01T01:00:00"),
+    time: "01:00 PM",
+    userId: 104,
+    status: EStatus.RESERVED,
+  },
+  {
+    id: "5",
+    date: new Date("2025-03-01T02:00:00"),
+    time: "02:00 PM",
+    userId: 105,
+    status: EStatus.AVAILABLE,
+  },
+];
 
 export let getAllTurnServices = async (): Promise<Iturn[]> => {
   return turns;
 };
+
+export let getTurnByIServices = async (
+  id: string
+): Promise<Iturn | undefined> => {
+  let userById = turns.find((turn) => turn.id === id);
+  return userById;
+};
+
 export let createTurnServices = async () => {
   return "created turn";
 };

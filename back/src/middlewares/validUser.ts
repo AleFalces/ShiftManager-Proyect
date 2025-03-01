@@ -8,9 +8,10 @@ export const validateUser = (
 ) => {
   const { id } = req.body;
   const user = users.find((user) => user.id === id);
+  console.log(users, id);
   if (user) {
     next();
   } else {
-    res.status(400).send("invalid user");
+    next({ message: "invalid user", statusCode: 400 });
   }
 };

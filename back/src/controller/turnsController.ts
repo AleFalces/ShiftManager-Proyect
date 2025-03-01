@@ -1,9 +1,10 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import {
   getAllTurnServices,
   createTurnServices,
   updateTurnServices,
   deleteTurnServices,
+  getTurnByIServices,
 } from "../services/turnsServices";
 import { Iturn } from "../interfaces/ITurns";
 import catchErros from "../utils/utils";
@@ -12,9 +13,14 @@ let getAllTurn = async (req: Request, res: Response) => {
   let turn: Iturn[] = await getAllTurnServices();
   res.status(200).send(turn);
 };
-let getTurnById = async (req: Request, res: Response) => {
-  let turn: Iturn[] = await getAllTurnServices();
-  res.status(200).send(turn);
+let getTurnById = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+  let turnById = await getTurnByIServices(id);
+  if (turnById === null || turnById === undefined) {
+    next({ message: "turn not Found", statusCode: 400 });
+  } else {
+    res.status(200).json(turnById);
+  }
 };
 let createTurn = async (req: Request, res: Response) => {
   let createdTurn: string = await createTurnServices();

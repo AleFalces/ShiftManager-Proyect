@@ -9,16 +9,12 @@ import {
 import IUser from "../interfaces/IUser";
 import catchErros from "../utils/utils";
 
-export let getUsers = async (req: Request, res: Response) => {
+let getUsers = async (req: Request, res: Response) => {
   let allUsers: IUser[] = await getUsersServices();
   res.status(200).json(allUsers);
 };
 
-export let getUserById = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+let getUserById = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
   let UsersById = await getUserByIServices(id);
   if (UsersById === null || UsersById === undefined) {
@@ -28,7 +24,7 @@ export let getUserById = async (
   }
 };
 
-export let createUsers = async (req: Request, res: Response) => {
+let createUsers = async (req: Request, res: Response) => {
   const { name, email, phone, username, password } = req.body;
   const newUser: IUser = await createUsersServices(
     {
@@ -41,12 +37,12 @@ export let createUsers = async (req: Request, res: Response) => {
   res.status(201).json(newUser);
 };
 
-export let updateUsers = async (req: Request, res: Response) => {
+let updateUsers = async (req: Request, res: Response) => {
   let userChanges: string = await updateUsersServices();
   res.status(200).send(userChanges);
 };
 
-export let deleteUsers = async (req: Request, res: Response) => {
+let deleteUsers = async (req: Request, res: Response) => {
   let deletedUser: string = await deleteUsersServices();
   res.status(200).send(deletedUser);
 };
@@ -55,4 +51,6 @@ export default {
   getUsers: catchErros(getUsers),
   getUserById: catchErros(getUserById),
   createUsers: catchErros(createUsers),
+  updateUsers: catchErros(updateUsers),
+  deleteUsers: catchErros(deleteUsers),
 };

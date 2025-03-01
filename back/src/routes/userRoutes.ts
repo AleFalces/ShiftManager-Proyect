@@ -1,17 +1,12 @@
 import { Router } from "express";
-import {
-  createUsers,
-  deleteUsers,
-  getUsers,
-  updateUsers,
-  getUserById,
-} from "../controller/userController";
+import userController from "../controller/userController";
+
 import { validateCredentials } from "../middlewares/validCredentials";
 
 export let userRouter = Router();
 
-userRouter.get("/", getUsers);
-userRouter.get("/:id", validateCredentials, getUserById);
-userRouter.post("/", createUsers);
-userRouter.put("/", updateUsers);
-userRouter.delete("/", deleteUsers);
+userRouter.get("/", userController.getUsers);
+userRouter.get("/:id", validateCredentials, userController.getUserById);
+userRouter.post("/", userController.createUsers);
+userRouter.put("/", userController.updateUsers);
+userRouter.delete("/", userController.deleteUsers);

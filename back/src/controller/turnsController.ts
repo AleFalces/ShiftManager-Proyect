@@ -6,22 +6,35 @@ import {
   deleteTurnServices,
 } from "../services/turnsServices";
 import { Iturn } from "../interfaces/ITurns";
+import catchErros from "../utils/utils";
 
-export let getAllTurn = async (req: Request, res: Response) => {
+let getAllTurn = async (req: Request, res: Response) => {
   let turn: Iturn[] = await getAllTurnServices();
   res.status(200).send(turn);
 };
-export let createTurn = async (req: Request, res: Response) => {
+let getTurnById = async (req: Request, res: Response) => {
+  let turn: Iturn[] = await getAllTurnServices();
+  res.status(200).send(turn);
+};
+let createTurn = async (req: Request, res: Response) => {
   let createdTurn: string = await createTurnServices();
   res.status(200).send(createdTurn);
 };
 
-export let updateTurn = async (req: Request, res: Response) => {
+let updateTurn = async (req: Request, res: Response) => {
   let TurnUpdated: string = await updateTurnServices();
   res.status(200).send(TurnUpdated);
 };
 
-export let deleteTurn = async (req: Request, res: Response) => {
+let deleteTurn = async (req: Request, res: Response) => {
   let deleted: string = await deleteTurnServices();
   res.status(200).send(deleted);
+};
+
+export default {
+  getAllTurn: catchErros(getAllTurn),
+  createTurn: catchErros(createTurn),
+  getTurnById: catchErros(getTurnById),
+  updateTurn: catchErros(updateTurn),
+  deleteTurn: catchErros(deleteTurn),
 };

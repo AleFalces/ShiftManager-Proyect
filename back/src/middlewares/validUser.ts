@@ -8,7 +8,6 @@ export const validateUser = (
 ) => {
   const { id } = req.body;
   const user = users.find((user) => user.id === id);
-  console.log(users, id);
   if (user) {
     next();
   } else {

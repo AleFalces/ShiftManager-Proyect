@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 
 @Entity({
-  name: "credentials",
+  name: "Credentials",
 })
 export class Credential {
   @PrimaryGeneratedColumn("uuid")

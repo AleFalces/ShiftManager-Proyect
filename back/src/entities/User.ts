@@ -24,11 +24,8 @@ export class User {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ type: "bigint" })
   phone: number;
-
-  @Column()
-  credentialsId: string;
 
   @OneToOne(() => Credential)
   @JoinColumn()

@@ -1,19 +1,18 @@
+import { CredetialSource } from "../config/data-source";
 import ICredentialDot from "../Dto/CredentialDto";
+import { Credential } from "../entities/Credential";
 import Icredemtial from "../interfaces/ICredentials";
 
 export const credential: Icredemtial[] = [];
 
-let id: number = 1;
-
 export let createCredentialServise = async (
   userCredential: ICredentialDot
-): Promise<Icredemtial> => {
-  let newCredential: Icredemtial = {
-    id,
+): Promise<Credential> => {
+  let newCredential: Credential | undefined = await CredetialSource.create({
     username: userCredential.username,
     password: userCredential.password,
-  };
-  credential.push(newCredential);
-  id++;
+  });
+  await CredetialSource.save(newCredential);
+
   return newCredential;
 };

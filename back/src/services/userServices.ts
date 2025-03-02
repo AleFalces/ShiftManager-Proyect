@@ -7,11 +7,12 @@ import { createCredentialServise } from "./credentialServices";
 
 export let users: IUser[] = [];
 
-let id: string = "1";
-let credentialsId: number = 1;
-
 export let getUsersServices = async (): Promise<User[]> => {
-  let AllUsers = await UserSource.find();
+  let AllUsers = await UserSource.find({
+    relations: {
+      credentials: true,
+    },
+  });
   return AllUsers;
 };
 
@@ -25,18 +26,15 @@ export let getUserByIServices = async (
 export let createUsersServices = async (
   userData: IUserDto,
   userCredential: ICredentialDot
-): Promise<IUser> => {
+): Promise<User> => {
   let createCredential = await createCredentialServise(userCredential);
-  const newUser: IUser = {
-    id,
-    name: userData.name,
-    email: userData.email,
-    phone: userData.phone,
-    credentialsId: createCredential.id,
-  };
-  users.push(newUser);
-  id = "1" + credentialsId++;
-  credentialsId++;
+  console.log(createCredential);
+  const datauser = { ...userData, credentials: createCredential };
+  console.log(datauser);
+
+  const newUser = UserSource.create(datauser);
+
+  UserSource.save(newUser);
   return newUser;
 };
 

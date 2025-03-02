@@ -1,11 +1,12 @@
 import { EStatus, Iturn } from "../interfaces/ITurns";
+import { ITurnDto } from "../Dto/TurnsDto";
 
 export let turns: Iturn[] = [
   {
     id: "1",
     date: new Date("2025-03-01T10:00:00"),
     time: "10:00 AM",
-    userId: 101,
+    userId: 1,
     status: EStatus.AVAILABLE,
   },
   {
@@ -38,6 +39,8 @@ export let turns: Iturn[] = [
   },
 ];
 
+let id: string = "1";
+
 export let getAllTurnServices = async (): Promise<Iturn[]> => {
   return turns;
 };
@@ -49,8 +52,18 @@ export let getTurnByIServices = async (
   return userById;
 };
 
-export let createTurnServices = async () => {
-  return "created turn";
+export let createTurnServices = async (turnData: ITurnDto): Promise<Iturn> => {
+  const newTurn: Iturn = {
+    id,
+    date: turnData.date,
+    time: turnData.time,
+    userId: turnData.userId,
+    status: EStatus.AVAILABLE,
+  };
+  turns.push(newTurn);
+  id = "1" + turnData.userId++;
+
+  return newTurn;
 };
 
 export let updateTurnServices = async () => {

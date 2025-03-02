@@ -23,7 +23,8 @@ let getTurnById = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 let createTurn = async (req: Request, res: Response) => {
-  let createdTurn: string = await createTurnServices();
+  let { userId, date, time } = req.body;
+  let createdTurn: Iturn = await createTurnServices({ userId, date, time });
   res.status(200).send(createdTurn);
 };
 

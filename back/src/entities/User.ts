@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Turn } from "./Turns";
+import { Credential } from "./Credential";
 
 @Entity({
   name: "Users",
@@ -20,4 +29,11 @@ export class User {
 
   @Column()
   credentialsId: string;
+
+  @OneToOne(() => Credential)
+  @JoinColumn()
+  credentials: Credential;
+
+  @OneToMany(() => Turn, (Turn) => Turn.user)
+  turns: Turn[];
 }

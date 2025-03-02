@@ -1,5 +1,7 @@
+import { UserSource } from "../config/data-source";
 import ICredentialDot from "../Dto/CredentialDto";
 import IUserDto from "../Dto/UserDto";
+import { User } from "../entities/User";
 import IUser from "../interfaces/IUser";
 import { createCredentialServise } from "./credentialServices";
 
@@ -8,14 +10,15 @@ export let users: IUser[] = [];
 let id: string = "1";
 let credentialsId: number = 1;
 
-export let getUsersServices = async (): Promise<IUser[]> => {
-  return users;
+export let getUsersServices = async (): Promise<User[]> => {
+  let AllUsers = await UserSource.find();
+  return AllUsers;
 };
 
 export let getUserByIServices = async (
   id: string
-): Promise<IUser | undefined> => {
-  let userById = users.find((user) => user.id === id);
+): Promise<User | null | undefined> => {
+  let userById = UserSource.findOneBy({ id });
   return userById;
 };
 

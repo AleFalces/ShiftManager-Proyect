@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { EStatus } from "../interfaces/ITurns";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./User";
 
 @Entity({
   name: "Turns",
@@ -19,4 +19,7 @@ export class Turn {
 
   @Column()
   userId: number;
+
+  @ManyToOne(() => User, (user) => user.turns)
+  user: User;
 }

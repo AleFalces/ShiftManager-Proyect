@@ -8,7 +8,7 @@ import { usernameExist } from "../middlewares/usernameExist";
 export let userRouter = Router();
 
 userRouter.get("/", userController.getUsers);
-userRouter.get("/:id", validateCredentials, userController.getUserById);
+userRouter.get("/:id", userController.getUserById);
 userRouter.post(
   "/",
   validateCreateUser,

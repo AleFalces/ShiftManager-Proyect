@@ -8,15 +8,16 @@ import {
 } from "../services/userServices";
 import IUser from "../interfaces/IUser";
 import catchErros from "../utils/utils";
+import { User } from "../entities/User";
 
 let getUsers = async (req: Request, res: Response) => {
-  let allUsers: IUser[] = await getUsersServices();
+  let allUsers: User[] = await getUsersServices();
   res.status(200).json(allUsers);
 };
 
 let getUserById = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
-  let UsersById = await getUserByIServices(id);
+  let UsersById: User | null | undefined = await getUserByIServices(id);
   if (UsersById === null || UsersById === undefined) {
     next({ message: "User not Found", statusCode: 400 });
   } else {

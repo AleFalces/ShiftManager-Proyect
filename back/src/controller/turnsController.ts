@@ -8,9 +8,10 @@ import {
 } from "../services/turnsServices";
 import { Iturn } from "../interfaces/ITurns";
 import catchErros from "../utils/utils";
+import { Turn } from "../entities/Turns";
 
 let getAllTurn = async (req: Request, res: Response) => {
-  let turn: Iturn[] = await getAllTurnServices();
+  let turn: Turn[] = await getAllTurnServices();
   res.status(200).send(turn);
 };
 let getTurnById = async (req: Request, res: Response, next: NextFunction) => {
@@ -24,7 +25,11 @@ let getTurnById = async (req: Request, res: Response, next: NextFunction) => {
 };
 let createTurn = async (req: Request, res: Response) => {
   let { userId, date, time } = req.body;
-  let createdTurn: Iturn = await createTurnServices({ userId, date, time });
+  let createdTurn: Turn | null = await createTurnServices({
+    userId,
+    date,
+    time,
+  });
   res.status(200).send(createdTurn);
 };
 

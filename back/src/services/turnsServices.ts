@@ -1,5 +1,7 @@
 import { EStatus, Iturn } from "../interfaces/ITurns";
 import { ITurnDto } from "../Dto/TurnsDto";
+import { Turn } from "../entities/Turns";
+import { TurnSource, UserSource } from "../config/data-source";
 
 export let turns: Iturn[] = [
   {
@@ -41,29 +43,36 @@ export let turns: Iturn[] = [
 
 let id: string = "1";
 
-export let getAllTurnServices = async (): Promise<Iturn[]> => {
-  return turns;
+export let getAllTurnServices = async (): Promise<Turn[]> => {
+  const allTurns: Turn[] | undefined = await TurnSource.find({
+    relations: {
+      user: true,
+    },
+  });
+  return allTurns;
 };
 
-export let getTurnByIServices = async (
-  id: string
-): Promise<Iturn | undefined> => {
-  let userById = turns.find((turn) => turn.id === id);
-  return userById;
+export let getTurnByIServices = async (id: string): Promise<Turn | null> => {
+  let turnById = await TurnSource.findOneBy({ id });
+  return turnById;
 };
 
-export let createTurnServices = async (turnData: ITurnDto): Promise<Iturn> => {
-  const newTurn: Iturn = {
-    id,
-    date: turnData.date,
-    time: turnData.time,
-    userId: turnData.userId,
-    status: EStatus.AVAILABLE,
-  };
-  turns.push(newTurn);
-  id = "1" + turnData.userId++;
-
-  return newTurn;
+export let createTurnServices = async (
+  turnData: ITurnDto
+): Promise<Turn | null> => {
+  const id: string = turnData.userId;
+  const userExist = await UserSource.findOneBy({ id });
+  if (userExist) {
+    let newTurn: Turn = TurnSource.create({
+      date: new Date(),
+      time: turnData.time,
+      userId: userExist?.id,
+      status: EStatus.AVAILABLE,
+    });
+    TurnSource.save(newTurn);
+    return newTurn;
+  }
+  return null;
 };
 
 export let updateTurnServices = async () => {

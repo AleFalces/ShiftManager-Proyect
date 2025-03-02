@@ -6,7 +6,6 @@ import {
   createUsersServices,
   getUserByIServices,
 } from "../services/userServices";
-import IUser from "../interfaces/IUser";
 import catchErros from "../utils/utils";
 import { User } from "../entities/User";
 

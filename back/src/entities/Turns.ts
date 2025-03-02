@@ -18,7 +18,7 @@ export class Turn {
   time: string;
 
   @Column()
-  userId: number;
+  userId: string;
 
   @ManyToOne(() => User, (user) => user.turns)
   user: User;

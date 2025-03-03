@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { users } from "../services/userServices";
 import { UserSource } from "../config/data-source";
 
 export const validateUser = async (

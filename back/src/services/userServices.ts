@@ -2,15 +2,13 @@ import { UserSource } from "../config/data-source";
 import ICredentialDot from "../Dto/CredentialDto";
 import IUserDto from "../Dto/UserDto";
 import { User } from "../entities/User";
-import IUser from "../interfaces/IUser";
 import { createCredentialServise } from "./credentialServices";
-
-export let users: IUser[] = [];
 
 export let getUsersServices = async (): Promise<User[]> => {
   let AllUsers = await UserSource.find({
     relations: {
       credentials: true,
+      turns: true,
     },
   });
   return AllUsers;

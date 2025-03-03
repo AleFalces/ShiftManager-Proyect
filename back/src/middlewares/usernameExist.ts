@@ -1,6 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { users } from "../services/userServices";
-import { credential } from "../services/credentialServices";
 import { CredetialSource, UserSource } from "../config/data-source";
 
 export const usernameExist = async (

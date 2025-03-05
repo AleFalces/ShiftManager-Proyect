@@ -1,7 +1,8 @@
-import { EStatus, ETime, EWeekday } from "../interfaces/ITurns";
+import { ETurnStatus, ETime, EWeekday } from "../interfaces/ITurns";
 import { ITurnDto } from "../Dto/TurnsDto";
 import { Turn } from "../entities/Turns";
 import { TurnSource, UserSource } from "../config/data-source";
+import userRepository from "../repositories/userRepository";
 
 export let getAllTurnServices = async (): Promise<Turn[]> => {
   const allTurns: Turn[] | undefined = await TurnSource.find({
@@ -19,15 +20,15 @@ export let getTurnByIServices = async (id: string): Promise<Turn | null> => {
 
 export let createTurnServices = async (turnData: ITurnDto): Promise<Turn> => {
   const { userId, day, time } = turnData;
-  const userExist = await UserSource.findOneBy({ id: userId });
+  const userExist = await userRepository.findById(userId);
   const weekday = Object.values(EWeekday).find((d) => d === day);
   const scheduleTime = Object.values(ETime).find((t) => t === time);
   if (userExist === null) {
     throw Error("user dont exist");
   }
-  if (userExist.type !== "admin") {
-    throw Error("This user cannot create turns.");
-  }
+  // if (userExist.type !== "admin") {
+  //   throw Error("This user cannot create turns.");
+  // }
   if (scheduleTime === undefined) {
     throw Error("The entered time is not available");
   }
@@ -38,21 +39,39 @@ export let createTurnServices = async (turnData: ITurnDto): Promise<Turn> => {
       day: weekday,
       time: scheduleTime,
       userId: userExist.id,
-      status: EStatus.AVAILABLE,
+      status: ETurnStatus.RESERVED,
     });
     TurnSource.save(newTurn);
     return newTurn;
   }
 };
 
-export let updateTurnServices = async () => {
-  return "updated turn";
+export let updateTurnServices = async (
+  turnId: string,
+  userId: string
+): Promise<Turn> => {
+  const turnCancel = await TurnSource.findOne({
+    where: { id: turnId },
+    relations: { user: true },
+  });
+  const userCanceler = await userRepository.findById(userId);
+  const userAdmin = await userRepository.findAdmin();
+  if (turnCancel === null) {
+    throw Error("Turn not  Found");
+  }
+  if (userCanceler === null) {
+    throw Error("Turn not  Found");
+  } else {
+    turnCancel.user = userAdmin;
+    turnCancel.status = ETurnStatus.AVAILABLE;
+    TurnSource.save(turnCancel);
+    return turnCancel;
+  }
 };
 
 export let deleteTurnServices = async (id: string) => {
   const turnDelete = await TurnSource.findOneBy({ id });
   const userIsAdmin = await UserSource.findOneBy({ id: turnDelete?.userId });
-
   if (!turnDelete) {
     throw Error("turn not found");
   }

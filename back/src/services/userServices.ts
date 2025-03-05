@@ -1,59 +1,83 @@
 import { UserSource } from "../config/data-source";
 import ICredentialDot from "../Dto/CredentialDto";
 import IUserDto from "../Dto/UserDto";
+import { IUserUpdateDto } from "../Dto/UserUpdateDto";
 import { User } from "../entities/User";
 import { EUserTypes } from "../interfaces/IUser";
-import { createCredentialServise } from "./credentialServices";
+import {
+  createCredentialServise,
+  deleteCredentialService,
+} from "./credentialServices";
+import userRepository from "../repositories/userRepository";
+import turnsRepository from "../repositories/turnsRepository";
+import { ETurnStatus } from "../interfaces/ITurns";
 
 export let getUsersServices = async (): Promise<User[]> => {
   let AllUsers = await UserSource.find({
     relations: {
-      credentials: true,
       turns: true,
     },
   });
   return AllUsers;
 };
 
-export let getUserByIServices = async (
-  id: string
-): Promise<User | null | undefined> => {
-  let userById = UserSource.findOneBy({ id });
+export let getUserByIServices = async (id: string): Promise<User> => {
+  let userById = userRepository.findById(id);
   return userById;
 };
 
 export let createUsersServices = async (
   userData: IUserDto,
   userCredential: ICredentialDot
-): Promise<User> => {
-  let createCredential = await createCredentialServise(userCredential);
-  const userType = Object.values(EUserTypes).find((t) => t === userData.type);
+): Promise<User | void> => {
+  const newUser: User | void = await userRepository.userCreate(
+    userData,
+    userCredential
+  );
 
-  if (userType === undefined) {
-    throw Error("Please enter a valid user type");
-  } else {
-    const datauser = {
-      ...userData,
-      type: userType,
-      credentials: createCredential,
-    };
-    const newUser = UserSource.create(datauser);
-
-    UserSource.save(newUser);
-    return newUser;
-  }
+  return newUser;
 };
 
-export let updateUsersServices = async () => {
-  return "User updated";
+export let updateUsersServices = async (userdata: IUserUpdateDto) => {
+  const { id, name, email, phone } = userdata;
+  const userUpdate = await userRepository.findById(id);
+  // if(!userUpdate){
+  //   throw Error("user not found")
+  // }else{
+  //   UserSource.update(id, name, email, phone)
+  // }
 };
 
 export let deleteUsersServices = async (id: string) => {
-  const userDelete = await UserSource.findOneBy({ id });
-  if (userDelete) {
-    UserSource.delete(userDelete);
-    return "user deleted successfully";
-  } else {
-    throw Error("the user does not exist");
+  console.log(id);
+  const userDelete = await await userRepository.findOne({
+    where: { id: id },
+    relations: {
+      turns: true,
+      credentials: true,
+    },
+  });
+  if (!userDelete) {
+    throw Error("User not foud");
   }
+  const adminUser = await userRepository.findOne({
+    where: { type: "admin" },
+    relations: {
+      turns: true,
+      credentials: true,
+    },
+  });
+
+  if (!adminUser) {
+    throw new Error("Admin user not found");
+  }
+  for (const turn of userDelete.turns) {
+    turn.user = adminUser;
+    turn.status = ETurnStatus.AVAILABLE;
+    await turnsRepository.save(turn);
+  }
+  await deleteCredentialService(userDelete.credentials.id);
+
+  await userRepository.remove(userDelete);
+  return "User deleted, credentials removed, and all turns reassigned to admin.";
 };

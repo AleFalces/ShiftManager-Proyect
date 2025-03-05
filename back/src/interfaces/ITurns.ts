@@ -1,4 +1,4 @@
-export enum EStatus {
+export enum ETurnStatus {
   AVAILABLE = "available",
   RESERVED = "reserved",
 }

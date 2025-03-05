@@ -32,7 +32,10 @@ export class User {
   @Column()
   type: string;
 
-  @OneToOne(() => Credential)
+  @OneToOne(() => Credential, (credentials) => credentials.user, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn()
   credentials: Credential;
 

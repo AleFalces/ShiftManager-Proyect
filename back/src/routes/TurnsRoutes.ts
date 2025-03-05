@@ -14,9 +14,8 @@ turnRouter.post(
   turnsController.createTurn
 );
 turnRouter.put(
-  "/cancel/:id",
-  validateUser,
-  validateCredentials,
+  "/cancel/",
+
   turnsController.updateTurn
 );
 turnRouter.delete("/cancel/:id", turnsController.deleteTurn);

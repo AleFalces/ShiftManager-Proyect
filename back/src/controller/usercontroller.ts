@@ -26,7 +26,7 @@ let getUserById = async (req: Request, res: Response, next: NextFunction) => {
 
 let createUsers = async (req: Request, res: Response) => {
   const { name, email, phone, type, username, password } = req.body;
-  const newUser: User = await createUsersServices(
+  const newUser: User | void = await createUsersServices(
     {
       name,
       email,
@@ -39,7 +39,8 @@ let createUsers = async (req: Request, res: Response) => {
 };
 
 let updateUsers = async (req: Request, res: Response) => {
-  let userChanges: string = await updateUsersServices();
+  const userdata = req.body;
+  let userChanges = await updateUsersServices(userdata);
   res.status(200).send(userChanges);
 };
 

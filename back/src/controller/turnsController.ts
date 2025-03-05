@@ -17,11 +17,7 @@ let getAllTurn = async (req: Request, res: Response) => {
 let getTurnById = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
   let turnById = await getTurnByIServices(id);
-  if (turnById === null || turnById === undefined) {
-    next({ message: "turn not Found", statusCode: 400 });
-  } else {
-    res.status(200).json(turnById);
-  }
+  res.status(200).json(turnById);
 };
 
 let createTurn = async (req: Request, res: Response) => {
@@ -35,7 +31,8 @@ let createTurn = async (req: Request, res: Response) => {
 };
 
 let updateTurn = async (req: Request, res: Response) => {
-  let TurnUpdated: string = await updateTurnServices();
+  const { userId, turnId } = req.body;
+  let TurnUpdated = await updateTurnServices(userId, turnId);
   res.status(200).send(TurnUpdated);
 };
 

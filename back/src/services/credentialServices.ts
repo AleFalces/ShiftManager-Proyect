@@ -1,6 +1,7 @@
 import { CredetialSource } from "../config/data-source";
 import ICredentialDot from "../Dto/CredentialDto";
 import { Credential } from "../entities/Credential";
+import credentialRepository from "../repositories/credentialRepository";
 
 export const createCredentialServise = async (
   userCredential: ICredentialDot
@@ -9,7 +10,16 @@ export const createCredentialServise = async (
     username: userCredential.username,
     password: userCredential.password,
   });
-  await CredetialSource.save(newCredential);
+  await credentialRepository.save(newCredential);
 
   return newCredential;
+};
+
+export const deleteCredentialService = async (id: string) => {
+  const credentialExist = await credentialRepository.findOneBy({ id });
+  if (credentialExist === null) {
+    throw Error("Credential Error");
+  } else {
+    await credentialRepository.delete(credentialExist);
+  }
 };

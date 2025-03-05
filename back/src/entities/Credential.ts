@@ -1,10 +1,5 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./User";
 
 @Entity({
   name: "Credentials",
@@ -18,4 +13,7 @@ export class Credential {
 
   @Column({ length: 50 })
   password: string;
+
+  @OneToOne(() => User, (user) => user.credentials, { onDelete: "CASCADE" })
+  user: User;
 }

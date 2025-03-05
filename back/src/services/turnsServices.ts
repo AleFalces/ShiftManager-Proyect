@@ -22,16 +22,17 @@ export let createTurnServices = async (turnData: ITurnDto): Promise<Turn> => {
   const userExist = await UserSource.findOneBy({ id: userId });
   const weekday = Object.values(EWeekday).find((d) => d === day);
   const scheduleTime = Object.values(ETime).find((t) => t === time);
-  console.log(scheduleTime);
-  console.log(weekday);
   if (userExist === null) {
     throw Error("user dont exist");
   }
+  if (userExist.type !== "admin") {
+    throw Error("This user cannot create turns.");
+  }
   if (scheduleTime === undefined) {
-    throw Error("inglese un horario dispoible");
+    throw Error("The entered time is not available");
   }
   if (weekday === undefined) {
-    throw Error("el dia elegido es incorrecto");
+    throw Error("The chosen day is incorrect");
   } else {
     let newTurn: Turn = TurnSource.create({
       day: weekday,
@@ -48,6 +49,17 @@ export let updateTurnServices = async () => {
   return "updated turn";
 };
 
-export let deleteTurnServices = async () => {
-  return "deleted turn";
+export let deleteTurnServices = async (id: string) => {
+  const turnDelete = await TurnSource.findOneBy({ id });
+  const userIsAdmin = await UserSource.findOneBy({ id: turnDelete?.userId });
+
+  if (!turnDelete) {
+    throw Error("turn not found");
+  }
+  if (userIsAdmin?.type !== "admin") {
+    throw Error("This user cannot delete turns.");
+  } else {
+    TurnSource.delete(turnDelete);
+    return "turn removed successfully";
+  }
 };

@@ -13,6 +13,7 @@ let getAllTurn = async (req: Request, res: Response) => {
   let turn: Turn[] = await getAllTurnServices();
   res.status(200).send(turn);
 };
+
 let getTurnById = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
   let turnById = await getTurnByIServices(id);
@@ -22,6 +23,7 @@ let getTurnById = async (req: Request, res: Response, next: NextFunction) => {
     res.status(200).json(turnById);
   }
 };
+
 let createTurn = async (req: Request, res: Response) => {
   let { userId, day, time } = req.body;
   let createdTurn: Turn = await createTurnServices({
@@ -38,7 +40,8 @@ let updateTurn = async (req: Request, res: Response) => {
 };
 
 let deleteTurn = async (req: Request, res: Response) => {
-  let deleted: string = await deleteTurnServices();
+  let { id } = req.params;
+  let deleted: string = await deleteTurnServices(id);
   res.status(200).send(deleted);
 };
 

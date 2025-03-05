@@ -16,7 +16,6 @@ let getUsers = async (req: Request, res: Response) => {
 
 let getUserById = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
-  console.log("ID recibido:", id);
   let UsersById: User | null | undefined = await getUserByIServices(id);
   if (UsersById === null || UsersById === undefined) {
     next({ message: "User not Found", statusCode: 400 });
@@ -26,12 +25,13 @@ let getUserById = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 let createUsers = async (req: Request, res: Response) => {
-  const { name, email, phone, username, password } = req.body;
+  const { name, email, phone, type, username, password } = req.body;
   const newUser: User = await createUsersServices(
     {
       name,
       email,
       phone,
+      type,
     },
     { username, password }
   );
@@ -44,7 +44,8 @@ let updateUsers = async (req: Request, res: Response) => {
 };
 
 let deleteUsers = async (req: Request, res: Response) => {
-  let deletedUser: string = await deleteUsersServices();
+  const { id } = req.params;
+  let deletedUser: string = await deleteUsersServices(id);
   res.status(200).send(deletedUser);
 };
 

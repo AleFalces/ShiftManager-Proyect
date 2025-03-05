@@ -19,9 +19,4 @@ turnRouter.put(
   validateCredentials,
   turnsController.updateTurn
 );
-turnRouter.delete(
-  "/",
-  validateUser,
-  validateCredentials,
-  turnsController.deleteTurn
-);
+turnRouter.delete("/cancel/:id", turnsController.deleteTurn);

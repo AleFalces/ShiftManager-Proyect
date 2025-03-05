@@ -2,6 +2,7 @@ import { UserSource } from "../config/data-source";
 import ICredentialDot from "../Dto/CredentialDto";
 import IUserDto from "../Dto/UserDto";
 import { User } from "../entities/User";
+import { EUserTypes } from "../interfaces/IUser";
 import { createCredentialServise } from "./credentialServices";
 
 export let getUsersServices = async (): Promise<User[]> => {
@@ -26,20 +27,33 @@ export let createUsersServices = async (
   userCredential: ICredentialDot
 ): Promise<User> => {
   let createCredential = await createCredentialServise(userCredential);
-  console.log(createCredential);
-  const datauser = { ...userData, credentials: createCredential };
-  console.log(datauser);
+  const userType = Object.values(EUserTypes).find((t) => t === userData.type);
 
-  const newUser = UserSource.create(datauser);
+  if (userType === undefined) {
+    throw Error("Please enter a valid user type");
+  } else {
+    const datauser = {
+      ...userData,
+      type: userType,
+      credentials: createCredential,
+    };
+    const newUser = UserSource.create(datauser);
 
-  UserSource.save(newUser);
-  return newUser;
+    UserSource.save(newUser);
+    return newUser;
+  }
 };
 
 export let updateUsersServices = async () => {
   return "User updated";
 };
 
-export let deleteUsersServices = async () => {
-  return "User deleted";
+export let deleteUsersServices = async (id: string) => {
+  const userDelete = await UserSource.findOneBy({ id });
+  if (userDelete) {
+    UserSource.delete(userDelete);
+    return "user deleted successfully";
+  } else {
+    throw Error("the user does not exist");
+  }
 };

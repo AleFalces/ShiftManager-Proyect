@@ -1,9 +1,4 @@
-interface IUser {
-  id: string;
-  name: string;
-  email: string;
-  phone: number;
-  credentialsId: number;
+export enum EUserTypes {
+  ADMIN = "admin",
+  USER = "user",
 }
-
-export default IUser;

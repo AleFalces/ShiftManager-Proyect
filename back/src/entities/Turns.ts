@@ -12,7 +12,7 @@ import { User } from "./User";
 })
 export class Turn {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+  turnId: string;
 
   @Column()
   day: string;

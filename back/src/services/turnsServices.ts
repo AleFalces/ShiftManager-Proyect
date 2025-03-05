@@ -14,7 +14,7 @@ export let getAllTurnServices = async (): Promise<Turn[]> => {
 };
 
 export let getTurnByIServices = async (id: string): Promise<Turn | null> => {
-  let turnById = await TurnSource.findOneBy({ id });
+  let turnById = await TurnSource.findOneBy({ turnId: id });
   return turnById;
 };
 
@@ -47,14 +47,14 @@ export let createTurnServices = async (turnData: ITurnDto): Promise<Turn> => {
 };
 
 export let updateTurnServices = async (
-  turnId: string,
-  userId: string
+  id: string,
+  turnId: string
 ): Promise<Turn> => {
   const turnCancel = await TurnSource.findOne({
-    where: { id: turnId },
+    where: { turnId },
     relations: { user: true },
   });
-  const userCanceler = await userRepository.findById(userId);
+  const userCanceler = await userRepository.findById(id);
   const userAdmin = await userRepository.findAdmin();
   if (turnCancel === null) {
     throw Error("Turn not  Found");
@@ -70,7 +70,7 @@ export let updateTurnServices = async (
 };
 
 export let deleteTurnServices = async (id: string) => {
-  const turnDelete = await TurnSource.findOneBy({ id });
+  const turnDelete = await TurnSource.findOneBy({ turnId: id });
   const userIsAdmin = await UserSource.findOneBy({ id: turnDelete?.userId });
   if (!turnDelete) {
     throw Error("turn not found");

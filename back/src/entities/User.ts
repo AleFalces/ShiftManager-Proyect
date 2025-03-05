@@ -21,7 +21,9 @@ export class User {
   })
   name: string;
 
-  @Column()
+  @Column({
+    length: 50,
+  })
   email: string;
 
   @Column({ type: "bigint" })

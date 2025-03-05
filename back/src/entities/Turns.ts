@@ -8,14 +8,14 @@ export class Turn {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column("date")
-  date: Date;
-
   @Column()
-  status: string;
+  day: string;
 
   @Column()
   time: string;
+
+  @Column()
+  status: string;
 
   @Column()
   userId: string;

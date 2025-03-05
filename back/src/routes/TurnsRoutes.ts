@@ -8,13 +8,13 @@ export const turnRouter = Router();
 turnRouter.get("/", turnsController.getAllTurn);
 turnRouter.get("/:id", validateCredentials, turnsController.getTurnById);
 turnRouter.post(
-  "/",
+  "/schedule",
   validateUser,
   validateCredentials,
   turnsController.createTurn
 );
 turnRouter.put(
-  "/",
+  "/cancel/:id",
   validateUser,
   validateCredentials,
   turnsController.updateTurn

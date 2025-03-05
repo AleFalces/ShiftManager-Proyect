@@ -16,6 +16,6 @@ export class Credential {
   @Column({ length: 50 })
   username: string;
 
-  @Column()
+  @Column({ length: 50 })
   password: string;
 }

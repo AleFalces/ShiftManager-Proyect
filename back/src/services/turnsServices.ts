@@ -1,4 +1,4 @@
-import { EStatus, Iturn } from "../interfaces/ITurns";
+import { EStatus, ETime, EWeekday } from "../interfaces/ITurns";
 import { ITurnDto } from "../Dto/TurnsDto";
 import { Turn } from "../entities/Turns";
 import { TurnSource, UserSource } from "../config/data-source";
@@ -17,22 +17,31 @@ export let getTurnByIServices = async (id: string): Promise<Turn | null> => {
   return turnById;
 };
 
-export let createTurnServices = async (
-  turnData: ITurnDto
-): Promise<Turn | null> => {
-  const id: string = turnData.userId;
-  const userExist = await UserSource.findOneBy({ id });
-  if (userExist) {
+export let createTurnServices = async (turnData: ITurnDto): Promise<Turn> => {
+  const { userId, day, time } = turnData;
+  const userExist = await UserSource.findOneBy({ id: userId });
+  const weekday = Object.values(EWeekday).find((d) => d === day);
+  const scheduleTime = Object.values(ETime).find((t) => t === time);
+  console.log(scheduleTime);
+  console.log(weekday);
+  if (userExist === null) {
+    throw Error("user dont exist");
+  }
+  if (scheduleTime === undefined) {
+    throw Error("inglese un horario dispoible");
+  }
+  if (weekday === undefined) {
+    throw Error("el dia elegido es incorrecto");
+  } else {
     let newTurn: Turn = TurnSource.create({
-      date: new Date(),
-      time: turnData.time,
-      userId: userExist?.id,
+      day: weekday,
+      time: scheduleTime,
+      userId: userExist.id,
       status: EStatus.AVAILABLE,
     });
     TurnSource.save(newTurn);
     return newTurn;
   }
-  return null;
 };
 
 export let updateTurnServices = async () => {

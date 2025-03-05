@@ -6,7 +6,6 @@ import {
   deleteTurnServices,
   getTurnByIServices,
 } from "../services/turnsServices";
-import { Iturn } from "../interfaces/ITurns";
 import catchErros from "../utils/utils";
 import { Turn } from "../entities/Turns";
 
@@ -24,10 +23,10 @@ let getTurnById = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 let createTurn = async (req: Request, res: Response) => {
-  let { userId, date, time } = req.body;
-  let createdTurn: Turn | null = await createTurnServices({
+  let { userId, day, time } = req.body;
+  let createdTurn: Turn = await createTurnServices({
     userId,
-    date,
+    day,
     time,
   });
   res.status(200).send(createdTurn);

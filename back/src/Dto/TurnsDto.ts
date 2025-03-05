@@ -1,5 +1,5 @@
 export interface ITurnDto {
-  date: Date;
+  day: string;
   time: string;
   userId: string;
 }

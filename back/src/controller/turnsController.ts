@@ -5,6 +5,7 @@ import {
   updateTurnServices,
   deleteTurnServices,
   getTurnByIServices,
+  reserveTurnServices,
 } from "../services/turnsServices";
 import catchErros from "../utils/utils";
 import { Turn } from "../entities/Turns";
@@ -31,9 +32,15 @@ let createTurn = async (req: Request, res: Response) => {
 };
 
 let updateTurn = async (req: Request, res: Response) => {
-  const { userId, turnId } = req.body;
-  let TurnUpdated = await updateTurnServices(userId, turnId);
+  const { id, turnId } = req.body;
+  let TurnUpdated = await updateTurnServices(id, turnId);
   res.status(200).send(TurnUpdated);
+};
+
+let reserveTurn = async (req: Request, res: Response) => {
+  const { userId, turnId } = req.body;
+  let turnReserve = await reserveTurnServices(userId, turnId);
+  res.status(200).send(turnReserve);
 };
 
 let deleteTurn = async (req: Request, res: Response) => {
@@ -48,4 +55,5 @@ export default {
   getTurnById: catchErros(getTurnById),
   updateTurn: catchErros(updateTurn),
   deleteTurn: catchErros(deleteTurn),
+  reserveTurn: catchErros(reserveTurn),
 };

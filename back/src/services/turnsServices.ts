@@ -15,6 +15,9 @@ export let getAllTurnServices = async (): Promise<Turn[]> => {
 
 export let getTurnByIServices = async (id: string): Promise<Turn | null> => {
   let turnById = await TurnSource.findOneBy({ turnId: id });
+  if (turnById === null) {
+    throw Error("Turn not found");
+  }
   return turnById;
 };
 
@@ -43,6 +46,28 @@ export let createTurnServices = async (turnData: ITurnDto): Promise<Turn> => {
     });
     TurnSource.save(newTurn);
     return newTurn;
+  }
+};
+
+export let reserveTurnServices = async (
+  id: string,
+  turnId: string
+): Promise<Turn> => {
+  const userReserve = await userRepository.findById(id);
+  if (userReserve === null) {
+    throw Error("User not  Found");
+  }
+  const turnToReserve = await TurnSource.findOne({
+    where: { turnId },
+    relations: { user: true },
+  });
+  if (turnToReserve === null) {
+    throw Error("Turn not  Found");
+  } else {
+    turnToReserve.user = userReserve;
+    turnToReserve.status = ETurnStatus.RESERVED;
+    TurnSource.save(turnToReserve);
+    return turnToReserve;
   }
 };
 

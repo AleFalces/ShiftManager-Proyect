@@ -8,13 +8,12 @@ import {
   createCredentialServise,
   deleteCredentialService,
 } from "../services/credentialServices";
-import turnsRepository from "./turnsRepository";
 
 const userRepository = AppDataSource.getRepository(User).extend({
   findById: async function (id: string) {
     const user: User | null = await this.findOneBy({ id });
     console.log(user);
-    if (user === null) {
+    if (user === null || user === undefined) {
       throw Error("User not found");
     } else {
       return user;

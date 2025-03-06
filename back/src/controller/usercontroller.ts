@@ -1,10 +1,11 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import {
   getUsersServices,
   updateUsersServices,
   deleteUsersServices,
   createUsersServices,
   getUserByIServices,
+  loginUserService,
 } from "../services/userServices";
 import catchErros from "../utils/utils";
 import { User } from "../entities/User";
@@ -14,14 +15,10 @@ let getUsers = async (req: Request, res: Response) => {
   res.status(200).json(allUsers);
 };
 
-let getUserById = async (req: Request, res: Response, next: NextFunction) => {
+let getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
   let UsersById: User | null | undefined = await getUserByIServices(id);
-  if (UsersById === null || UsersById === undefined) {
-    next({ message: "User not Found", statusCode: 400 });
-  } else {
-    res.status(200).json(UsersById);
-  }
+  res.status(200).json(UsersById);
 };
 
 let createUsers = async (req: Request, res: Response) => {
@@ -44,6 +41,12 @@ let updateUsers = async (req: Request, res: Response) => {
   res.status(200).send(userChanges);
 };
 
+let loginUser = async (req: Request, res: Response) => {
+  const userData = req.body;
+  let loggedUser = await loginUserService(userData);
+  res.status(200).send("logged succesfull");
+};
+
 let deleteUsers = async (req: Request, res: Response) => {
   const { id } = req.params;
   let deletedUser: string = await deleteUsersServices(id);
@@ -56,4 +59,5 @@ export default {
   createUsers: catchErros(createUsers),
   updateUsers: catchErros(updateUsers),
   deleteUsers: catchErros(deleteUsers),
+  loginUser: catchErros(loginUser),
 };

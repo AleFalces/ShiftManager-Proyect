@@ -14,6 +14,6 @@ userRouter.post(
   usernameExist,
   userController.createUsers
 );
-userRouter.post("/loging");
+userRouter.post("/login", userController.loginUser);
 userRouter.put("/", validateCredentials, userController.updateUsers);
 userRouter.delete("/delete/:id", userController.deleteUsers);

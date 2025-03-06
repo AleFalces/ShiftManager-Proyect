@@ -3,14 +3,11 @@ import ICredentialDot from "../Dto/CredentialDto";
 import IUserDto from "../Dto/UserDto";
 import { IUserUpdateDto } from "../Dto/UserUpdateDto";
 import { User } from "../entities/User";
-import { EUserTypes } from "../interfaces/IUser";
-import {
-  createCredentialServise,
-  deleteCredentialService,
-} from "./credentialServices";
+import { deleteCredentialService } from "./credentialServices";
 import userRepository from "../repositories/userRepository";
 import turnsRepository from "../repositories/turnsRepository";
 import { ETurnStatus } from "../interfaces/ITurns";
+import { ILoginDto } from "../Dto/LoginDto";
 
 export let getUsersServices = async (): Promise<User[]> => {
   let AllUsers = await UserSource.find({
@@ -22,8 +19,10 @@ export let getUsersServices = async (): Promise<User[]> => {
 };
 
 export let getUserByIServices = async (id: string): Promise<User> => {
-  let userById = userRepository.findById(id);
-  return userById;
+  let userById = await userRepository.findById(id);
+  if (userById === null || userById === undefined) {
+    throw Error("User Not Found");
+  } else return userById;
 };
 
 export let createUsersServices = async (
@@ -41,11 +40,29 @@ export let createUsersServices = async (
 export let updateUsersServices = async (userdata: IUserUpdateDto) => {
   const { id, name, email, phone } = userdata;
   const userUpdate = await userRepository.findById(id);
-  // if(!userUpdate){
-  //   throw Error("user not found")
-  // }else{
-  //   UserSource.update(id, name, email, phone)
-  // }
+  userUpdate.email = email;
+  userUpdate.name = name;
+  userUpdate.phone = phone;
+  userRepository.save(userUpdate);
+  return userUpdate;
+};
+
+export let loginUserService = async (userdata: ILoginDto) => {
+  const userLog = await userRepository.findOne({
+    where: { id: userdata.id },
+    relations: { credentials: true },
+  });
+  if (userLog === null) {
+    throw Error("User not found");
+  }
+  if (userLog.credentials.username !== userdata.username) {
+    throw Error("incorrect username");
+  }
+  if (userLog.credentials.password !== userdata.password) {
+    throw Error("incorrect pasword");
+  } else {
+    return "usuario logueado correctamente";
+  }
 };
 
 export let deleteUsersServices = async (id: string) => {

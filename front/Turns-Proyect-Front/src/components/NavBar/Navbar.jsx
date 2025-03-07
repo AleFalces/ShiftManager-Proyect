@@ -1,6 +1,8 @@
+import styles from "./NavBar.module.css";
+
 let Navbar = () => {
   return (
-    <div>
+    <div className={styles.Navbar}>
       <li>Home</li>
       <li>Turns</li>
       <li>About Us</li>

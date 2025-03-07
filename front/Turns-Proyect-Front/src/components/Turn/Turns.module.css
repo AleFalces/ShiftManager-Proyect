@@ -1,0 +1,17 @@
+.turn {
+  font-size: large;
+  border: solid #0c6366 1px;
+  border-radius: 25px;
+  padding: 15px;
+  background-color: #e1ecd6;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.turn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}

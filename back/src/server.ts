@@ -6,10 +6,12 @@ import express, {
 } from "express";
 import router from "./routes";
 import { IError } from "./interfaces/IError";
+import cors from "cors";
 
 const morgan = require("morgan");
 const server = express();
 server.use(morgan("dev"));
+server.use(cors());
 server.use(express.json());
 server.use(router);
 

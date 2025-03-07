@@ -1,16 +1,21 @@
 import Turn from "../../components/Turn/Turn";
-import { Mockturns } from "../../../Helpers/mockdata";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./MyTurns.module.css";
+import axios from "axios";
 
 let MyTurns = () => {
-  const [turnState, setturnState] = useState(Mockturns);
-  console.log("soy Turns:", turnState);
+  const [turnState, setturnState] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/turns/")
+      .then((res) => setturnState(res.data));
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.turnsContainer}>
         {turnState.map((turn) => {
-          console.log(turn.id);
           return <Turn key={turn.id} turn={turn} />;
         })}
       </div>

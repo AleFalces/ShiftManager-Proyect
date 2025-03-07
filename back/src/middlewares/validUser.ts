@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { UserSource } from "../config/data-source";
+import userRepository from "../repositories/userRepository";
 
 export const validateUser = async (
   req: Request,
@@ -7,7 +7,7 @@ export const validateUser = async (
   next: NextFunction
 ) => {
   const { id } = req.body;
-  const user = await UserSource.findOneBy({ id });
+  const user = await userRepository.findOneBy({ id });
   if (user) {
     next();
   } else {

@@ -1,7 +1,7 @@
 import { ETurnStatus, ETime, EWeekday } from "../interfaces/ITurns";
 import { ITurnDto } from "../Dto/TurnsDto";
 import { Turn } from "../entities/Turns";
-import { TurnSource, UserSource } from "../config/data-source";
+import { TurnSource } from "../config/data-source";
 import userRepository from "../repositories/userRepository";
 
 export let getAllTurnServices = async (): Promise<Turn[]> => {
@@ -29,9 +29,9 @@ export let createTurnServices = async (turnData: ITurnDto): Promise<Turn> => {
   if (userExist === null) {
     throw Error("user dont exist");
   }
-  // if (userExist.type !== "admin") {
-  //   throw Error("This user cannot create turns.");
-  // }
+  if (userExist.type !== "admin") {
+    throw Error("This user cannot create turns.");
+  }
   if (scheduleTime === undefined) {
     throw Error("The entered time is not available");
   }
@@ -42,9 +42,9 @@ export let createTurnServices = async (turnData: ITurnDto): Promise<Turn> => {
       day: weekday,
       time: scheduleTime,
       userId: userExist.id,
-      status: ETurnStatus.RESERVED,
+      status: ETurnStatus.AVAILABLE,
     });
-    TurnSource.save(newTurn);
+    await TurnSource.save(newTurn);
     return newTurn;
   }
 };
@@ -63,6 +63,9 @@ export let reserveTurnServices = async (
   });
   if (turnToReserve === null) {
     throw Error("Turn not  Found");
+  }
+  if (turnToReserve.status === ETurnStatus.RESERVED) {
+    throw Error("This turn  is not available");
   } else {
     turnToReserve.user = userReserve;
     turnToReserve.status = ETurnStatus.RESERVED;
@@ -96,7 +99,9 @@ export let updateTurnServices = async (
 
 export let deleteTurnServices = async (id: string) => {
   const turnDelete = await TurnSource.findOneBy({ turnId: id });
-  const userIsAdmin = await UserSource.findOneBy({ id: turnDelete?.userId });
+  const userIsAdmin = await userRepository.findOneBy({
+    id: turnDelete?.userId,
+  });
   if (!turnDelete) {
     throw Error("turn not found");
   }

@@ -1,18 +1,14 @@
-import { AppDataSource, UserSource } from "../config/data-source";
+import { AppDataSource } from "../config/data-source";
 import ICredentialDot from "../Dto/CredentialDto";
 import IUserDto from "../Dto/UserDto";
-import { Turn } from "../entities/Turns";
 import { User } from "../entities/User";
 import { EUserTypes } from "../interfaces/IUser";
-import {
-  createCredentialServise,
-  deleteCredentialService,
-} from "../services/credentialServices";
+import { createCredentialServise } from "../services/credentialServices";
 
 const userRepository = AppDataSource.getRepository(User).extend({
   findById: async function (id: string) {
     const user: User | null = await this.findOneBy({ id });
-    console.log(user);
+
     if (user === null || user === undefined) {
       throw Error("User not found");
     } else {

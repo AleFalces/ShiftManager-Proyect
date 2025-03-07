@@ -2,14 +2,21 @@ import server from "./server";
 import { PORT } from "./config/envs";
 import "reflect-metadata";
 import { AppDataSource } from "./config/data-source";
+import { preloadData } from "./helpers/preloadData";
 
-AppDataSource.initialize().then((res) => {
-  console.log("Database conected succesfull");
-  server.listen(PORT, () => {
-    console.log(`server listening on port ${PORT}`);
-  });
-});
+const startServer = async () => {
+  try {
+    await AppDataSource.initialize();
+    console.log("Database connected successfully");
 
-// server.listen(PORT, () => {
-//   console.log(`server listening on port ${PORT}`);
-// });
+    await preloadData();
+
+    server.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Error starting the server:", error);
+  }
+};
+
+startServer();

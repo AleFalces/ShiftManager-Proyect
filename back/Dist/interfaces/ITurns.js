@@ -1,0 +1,43 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ETime = exports.EWeekday = exports.ETurnStatus = void 0;
+var ETurnStatus;
+(function (ETurnStatus) {
+    ETurnStatus["AVAILABLE"] = "available";
+    ETurnStatus["RESERVED"] = "reserved";
+})(ETurnStatus || (exports.ETurnStatus = ETurnStatus = {}));
+var EWeekday;
+(function (EWeekday) {
+    EWeekday["Monday"] = "Monday";
+    EWeekday["Tuesday"] = "Tuesday";
+    EWeekday["Wednesday"] = "Wednesday";
+    EWeekday["Thursday"] = "Thursday";
+    EWeekday["Friday"] = "Friday";
+    EWeekday["Saturday"] = "Saturday";
+})(EWeekday || (exports.EWeekday = EWeekday = {}));
+var ETime;
+(function (ETime) {
+    ETime["EightAM"] = "08:00";
+    ETime["EightThirtyAM"] = "08:30";
+    ETime["NineAM"] = "09:00";
+    ETime["NineThirtyAM"] = "09:30";
+    ETime["TenAM"] = "10:00";
+    ETime["TenThirtyAM"] = "10:30";
+    ETime["ElevenAM"] = "11:00";
+    ETime["ElevenThirtyAM"] = "11:30";
+    ETime["TwelvePM"] = "12:00";
+    ETime["TwelveThirtyPM"] = "12:30";
+    ETime["OnePM"] = "13:00";
+    ETime["OneThirtyPM"] = "13:30";
+    ETime["TwoPM"] = "14:00";
+    ETime["TwoThirtyPM"] = "14:30";
+    ETime["ThreePM"] = "15:00";
+    ETime["ThreeThirtyPM"] = "15:30";
+    ETime["FourPM"] = "16:00";
+    ETime["FourThirtyPM"] = "16:30";
+    ETime["FivePM"] = "17:00";
+    ETime["FiveThirtyPM"] = "17:30";
+    ETime["SixPM"] = "18:00";
+    ETime["SixThirtyPM"] = "18:30";
+    ETime["SevenPM"] = "19:00";
+})(ETime || (exports.ETime = ETime = {}));

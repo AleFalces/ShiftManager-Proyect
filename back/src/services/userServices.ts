@@ -1,16 +1,16 @@
-import { UserSource } from "../config/data-source";
 import ICredentialDot from "../Dto/CredentialDto";
 import IUserDto from "../Dto/UserDto";
 import { IUserUpdateDto } from "../Dto/UserUpdateDto";
 import { User } from "../entities/User";
 import { deleteCredentialService } from "./credentialServices";
 import userRepository from "../repositories/userRepository";
-import turnsRepository from "../repositories/turnsRepository";
+
 import { ETurnStatus } from "../interfaces/ITurns";
 import { ILoginDto } from "../Dto/LoginDto";
+import { TurnSource } from "../config/data-source";
 
 export let getUsersServices = async (): Promise<User[]> => {
-  let AllUsers = await UserSource.find({
+  let AllUsers = await userRepository.find({
     relations: {
       turns: true,
     },
@@ -66,7 +66,6 @@ export let loginUserService = async (userdata: ILoginDto) => {
 };
 
 export let deleteUsersServices = async (id: string) => {
-  console.log(id);
   const userDelete = await await userRepository.findOne({
     where: { id: id },
     relations: {
@@ -91,7 +90,7 @@ export let deleteUsersServices = async (id: string) => {
   for (const turn of userDelete.turns) {
     turn.user = adminUser;
     turn.status = ETurnStatus.AVAILABLE;
-    await turnsRepository.save(turn);
+    await TurnSource.save(turn);
   }
   await deleteCredentialService(userDelete.credentials.id);
 

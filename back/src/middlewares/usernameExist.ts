@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { CredetialSource, UserSource } from "../config/data-source";
+import { CredetialSource } from "../config/data-source";
+import userRepository from "../repositories/userRepository";
 
 export const usernameExist = async (
   req: Request,
@@ -7,7 +8,7 @@ export const usernameExist = async (
   next: NextFunction
 ) => {
   const { username, email } = req.body;
-  let emailExist = await UserSource.findOneBy({ email });
+  let emailExist = await userRepository.findOneBy({ email });
 
   let usernameExist = await CredetialSource.findOneBy({ username });
 

@@ -38,8 +38,8 @@ let updateTurn = async (req: Request, res: Response) => {
 };
 
 let reserveTurn = async (req: Request, res: Response) => {
-  const { userId, turnId } = req.body;
-  let turnReserve = await reserveTurnServices(userId, turnId);
+  const { id, turnId } = req.body;
+  let turnReserve = await reserveTurnServices(id, turnId);
   res.status(200).send(turnReserve);
 };
 

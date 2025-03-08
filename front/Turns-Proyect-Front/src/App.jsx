@@ -6,7 +6,7 @@ import MyTurns from "./views/MyTurns/MyTurns";
 import RegisterForm from "./views/RegisterForm/RegisterForm";
 
 function App() {
-  let userHaveAcount = true;
+  let userHaveAcount = false;
   return (
     <>
       <Navbar />

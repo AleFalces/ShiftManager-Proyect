@@ -20,11 +20,11 @@ const userRepository = AppDataSource.getRepository(User).extend({
     userData: IUserDto,
     userCredential: ICredentialDot
   ) {
-    let createCredential = await createCredentialServise(userCredential);
     const userType = Object.values(EUserTypes).find((t) => t === userData.type);
     if (userType === undefined) {
       throw Error("Please enter a valid user type");
     } else {
+      let createCredential = await createCredentialServise(userCredential);
       const datauser = {
         ...userData,
         type: userType,
@@ -35,6 +35,7 @@ const userRepository = AppDataSource.getRepository(User).extend({
       return newUser;
     }
   },
+
   findAdmin: async function () {
     const adminUser = await userRepository.findOne({
       where: { type: "admin" },

@@ -1,12 +1,17 @@
+import styles from "./LoginForm.module.css";
+
 let LoginForm = () => {
   return (
-    <form>
-      <label>Enter your Uame</label>
-      <imput type="text" name="username"></imput>
+    <div className={styles.contaierForm}>
+      <form className={styles.inputsContainer}>
+        <h2> Login</h2>
+        <label>Enter your Uame</label>
+        <input type="text" name="username" />
 
-      <label>Enter Your Password</label>
-      <imput type="text" name="password"></imput>
-    </form>
+        <label>Enter Your Password</label>
+        <input type="text" name="password" />
+      </form>
+    </div>
   );
 };
 

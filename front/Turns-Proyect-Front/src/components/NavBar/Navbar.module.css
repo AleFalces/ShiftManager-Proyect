@@ -4,4 +4,5 @@
   flex-direction: row;
   justify-content: space-evenly;
   background-color: #7cd7cf;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

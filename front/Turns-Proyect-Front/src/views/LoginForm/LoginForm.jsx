@@ -1,47 +1,61 @@
 import { useState } from "react";
 import styles from "./LoginForm.module.css";
+import validatelogin from "../../utils/ValidateLogin";
 
 let LoginForm = () => {
   const [login, setlogin] = useState({
     username: "",
     password: "",
   });
+  let [Error, setError] = useState({});
+  let [showErrors, setShowErrors] = useState(false);
 
-  let handlerInput = (event) => {
-    console.log(login);
+  const handlerInputs = (event) => {
     const { name, value } = event.target;
     setlogin({
       ...login,
       [name]: value,
     });
-    console.log(login);
   };
 
   let handlerSubmit = (event) => {
     event.preventDefault();
+    const validationErrors = validatelogin(login);
+    setError(validationErrors);
+    setShowErrors(true);
 
-    return alert("user");
+    if (Object.keys(validationErrors).length === 0) {
+      alert("Login successful");
+    }
   };
+
   return (
     <div className={styles.contaierForm}>
+      <h2>Login</h2>
       <form className={styles.inputsContainer} onSubmit={handlerSubmit}>
-        <h2> Login</h2>
-        <label>Enter your Uame</label>
+        <label>Username: </label>
         <input
           type="text"
           name="username"
-          onChange={handlerInput}
+          onChange={handlerInputs}
           value={login.username}
         />
+        {showErrors && Error.username && (
+          <p className={styles.error}>{Error.username}</p>
+        )}
 
-        <label>Enter Your Password</label>
+        <label>Password: </label>
         <input
-          type="text"
+          type="password"
           name="password"
-          onChange={handlerInput}
+          onChange={handlerInputs}
           value={login.password}
         />
-        <button>Log In</button>
+        {showErrors && Error.password && (
+          <p className={styles.error}>{Error.password}</p>
+        )}
+
+        <button type="submit">Login</button>
       </form>
     </div>
   );

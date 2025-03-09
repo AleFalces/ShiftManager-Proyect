@@ -1,4 +1,4 @@
-.contaierForm {
+/* .contaierForm {
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -16,4 +16,68 @@
   justify-content: space-around;
   background-color: #7cd7cf;
   overflow: auto;
+} */
+
+.contaierForm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e1ecd6;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+
+.inputsContainer {
+  height: 85%;
+  width: 50%;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  background-color: #7cd7cf;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+button {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #357abd;
+}
+
+.error {
+  color: #d9534f;
+  background: #f2dede;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }

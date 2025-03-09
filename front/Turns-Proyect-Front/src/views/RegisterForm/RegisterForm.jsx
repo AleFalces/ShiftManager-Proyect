@@ -11,13 +11,8 @@ let RegisterForm = () => {
     password: "",
   });
 
-  let [Error, setError] = useState({
-    name: "Name is required",
-    email: "Email is required",
-    phone: "Phone  is required",
-    username: "Username is required",
-    password: "Password is required",
-  });
+  let [Error, setError] = useState({});
+  let [showErrors, setShowErrors] = useState(false);
 
   const handlerInputs = (event) => {
     const { name, value } = event.target;
@@ -32,22 +27,30 @@ let RegisterForm = () => {
 
   let handlerSubmit = (event) => {
     event.preventDefault();
+    const validationErrors = validate(FormState);
+    setError(validationErrors);
+    setShowErrors(true);
 
-    return alert("usuario registrado correctamente");
+    if (Object.keys(validationErrors).length === 0) {
+      alert("User registered successfully");
+    }
   };
 
   return (
     <div className={styles.contaierForm}>
-      <h2> Register</h2>
+      <h2>Register</h2>
       <form className={styles.inputsContainer} onSubmit={handlerSubmit}>
         <label>Name: </label>
         <input
           type="text"
-          onChange={handlerInputs}
           name="name"
+          onChange={handlerInputs}
           value={FormState.name}
         />
-        {Error.username && <p>Name is required</p>}
+        {showErrors && Error.name && (
+          <p className={styles.error}>{Error.name}</p>
+        )}
+
         <label>Email: </label>
         <input
           type="email"
@@ -55,23 +58,32 @@ let RegisterForm = () => {
           onChange={handlerInputs}
           value={FormState.email}
         />
-        {Error.email && <p>Email is required</p>}
+        {showErrors && Error.email && (
+          <p className={styles.error}>{Error.email}</p>
+        )}
+
         <label>Phone: </label>
         <input
-          type="number"
+          type="text"
           name="phone"
           onChange={handlerInputs}
           value={FormState.phone}
         />
-        {Error.phone && <p>Phone number is required</p>}
-        <label>Username</label>
+        {showErrors && Error.phone && (
+          <p className={styles.error}>{Error.phone}</p>
+        )}
+
+        <label>Username: </label>
         <input
           type="text"
           name="username"
           onChange={handlerInputs}
           value={FormState.username}
         />
-        {Error.username && <p>username is required</p>}
+        {showErrors && Error.username && (
+          <p className={styles.error}>{Error.username}</p>
+        )}
+
         <label>Password: </label>
         <input
           type="password"
@@ -79,11 +91,22 @@ let RegisterForm = () => {
           onChange={handlerInputs}
           value={FormState.password}
         />
-        {Error.password && <p>Password is required</p>}
-        <label>Confirm Password</label>
-        <input type="password" name="Cpassword" onChange={handlerInputs} />
-        {Error?.cpassword && <p>rechequea el password</p>}
-        <button> Submit</button>
+        {showErrors && Error.password && (
+          <p className={styles.error}>{Error.password}</p>
+        )}
+
+        <label>Confirm Password: </label>
+        <input
+          type="password"
+          name="Cpassword"
+          onChange={handlerInputs}
+          value={FormState.Cpassword}
+        />
+        {showErrors && Error.Cpassword && (
+          <p className={styles.error}>{Error.Cpassword}</p>
+        )}
+
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

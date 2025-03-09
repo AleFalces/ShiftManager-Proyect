@@ -2,17 +2,27 @@ import styles from "./NavBar.module.css";
 import { Link } from "react-router-dom";
 
 let Navbar = () => {
-  const userHaveAcount = false;
+  const userHaveAcount = true;
   return (
     <div className={styles.Navbar}>
-      <Link to="/">Home</Link>
-      <Link to="/turns">Turns</Link>
-      <Link to="/about">About Us</Link>
+      <Link to="/">
+        <span>Home</span>
+      </Link>
+      <Link to="/turns">
+        <span>Turns</span>
+      </Link>
+      <Link to="/about">
+        <span>About Us</span>
+      </Link>
 
       {userHaveAcount === false ? (
-        <Link to="/register">Register</Link>
+        <Link to="/register">
+          <span>Register</span>
+        </Link>
       ) : (
-        <Link to="/login">Login</Link>
+        <Link to="/login">
+          <span>Login</span>
+        </Link>
       )}
     </div>
   );

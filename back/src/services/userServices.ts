@@ -61,8 +61,10 @@ export let loginUserService = async (userdata: ILoginDto) => {
   if (userLog.password !== userdata.password) {
     throw Error("incorrect pasword");
   } else {
-    const logedUser: User = await userRepository.findById(userLog.user.id);
-    console.log(logedUser);
+    const logedUser: User | null = await userRepository.findOne({
+      where: { id: userLog.user.id },
+      relations: { turns: true },
+    });
     return logedUser;
   }
 };

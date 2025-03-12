@@ -37,7 +37,7 @@ export const Preloadusers = [
     type: "admin",
     credentials: {
       username: "admin",
-      password: "adminpassword",
+      password: "adminpassworD1.",
     },
   },
   {

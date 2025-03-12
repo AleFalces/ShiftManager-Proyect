@@ -7,7 +7,7 @@ import userRepository from "../repositories/userRepository";
 
 import { ETurnStatus } from "../interfaces/ITurns";
 import { ILoginDto } from "../Dto/LoginDto";
-import { TurnSource } from "../config/data-source";
+import { CredetialSource, TurnSource } from "../config/data-source";
 
 export let getUsersServices = async (): Promise<User[]> => {
   let AllUsers = await userRepository.find({
@@ -48,20 +48,22 @@ export let updateUsersServices = async (userdata: IUserUpdateDto) => {
 };
 
 export let loginUserService = async (userdata: ILoginDto) => {
-  const userLog = await userRepository.findOne({
-    where: { id: userdata.id },
-    relations: { credentials: true },
+  const userLog = await CredetialSource.findOne({
+    where: { username: userdata.username },
+    relations: { user: true },
   });
   if (userLog === null) {
     throw Error("User not found");
   }
-  if (userLog.credentials.username !== userdata.username) {
+  if (userLog.username !== userdata.username) {
     throw Error("incorrect username");
   }
-  if (userLog.credentials.password !== userdata.password) {
+  if (userLog.password !== userdata.password) {
     throw Error("incorrect pasword");
   } else {
-    return "usuario logueado correctamente";
+    const logedUser: User = await userRepository.findById(userLog.user.id);
+    console.log(logedUser);
+    return logedUser;
   }
 };
 

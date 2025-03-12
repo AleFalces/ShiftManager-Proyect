@@ -44,7 +44,7 @@ let updateUsers = async (req: Request, res: Response) => {
 let loginUser = async (req: Request, res: Response) => {
   const userData = req.body;
   let loggedUser = await loginUserService(userData);
-  res.status(200).send("logged succesfull");
+  res.status(200).json(loggedUser);
 };
 
 let deleteUsers = async (req: Request, res: Response) => {

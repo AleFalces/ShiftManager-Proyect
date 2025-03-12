@@ -1,23 +1,20 @@
 import Turn from "../../components/Turn/Turn";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MyTurns.module.css";
 import axios from "axios";
+import { Suspense } from "react";
+
+const LazyDataLoader = React.lazy(() =>
+  import("../../components/LazyDataLoader/LazyDataLoader")
+);
 
 let MyTurns = () => {
-  const [turnState, setturnState] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/turns/")
-      .then((res) => setturnState(res.data));
-  }, []);
-
   return (
     <div className={styles.container}>
       <div className={styles.turnsContainer}>
-        {turnState.map((turn) => {
-          return <Turn key={turn.id} turn={turn} />;
-        })}
+        <Suspense fallback={<div>Loading...</div>}>
+          <LazyDataLoader />
+        </Suspense>
       </div>
     </div>
   );

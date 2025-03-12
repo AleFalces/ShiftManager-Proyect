@@ -1,31 +1,45 @@
 import { useState } from "react";
 import styles from "./LoginForm.module.css";
 import validatelogin from "../../utils/ValidateLogin";
+import { putLoginUser } from "../../services/userServices";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { userLogin } from "../../../redux/userSlice";
 
 let LoginForm = () => {
-  const [login, setlogin] = useState({
+  const [loginData, setloginData] = useState({
     username: "",
     password: "",
   });
   let [Error, setError] = useState({});
   let [showErrors, setShowErrors] = useState(false);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handlerInputs = (event) => {
     const { name, value } = event.target;
-    setlogin({
-      ...login,
+    setloginData({
+      ...loginData,
       [name]: value,
     });
   };
 
-  let handlerSubmit = (event) => {
+  let handlerSubmit = async (event) => {
     event.preventDefault();
-    const validationErrors = validatelogin(login);
+    const validationErrors = validatelogin(loginData);
     setError(validationErrors);
     setShowErrors(true);
 
     if (Object.keys(validationErrors).length === 0) {
-      alert("Login successful");
+      try {
+        const user = await putLoginUser(loginData);
+        console.log("Usuario recibido:", user);
+        dispatch(userLogin(user));
+        navigate("/");
+      } catch (error) {
+        console.error("Error al loguear:", error.message);
+      }
     }
   };
 
@@ -38,7 +52,7 @@ let LoginForm = () => {
           type="text"
           name="username"
           onChange={handlerInputs}
-          value={login.username}
+          value={loginData.username}
         />
         {showErrors && Error.username && (
           <p className={styles.error}>{Error.username}</p>
@@ -49,7 +63,7 @@ let LoginForm = () => {
           type="password"
           name="password"
           onChange={handlerInputs}
-          value={login.password}
+          value={loginData.password}
         />
         {showErrors && Error.password && (
           <p className={styles.error}>{Error.password}</p>

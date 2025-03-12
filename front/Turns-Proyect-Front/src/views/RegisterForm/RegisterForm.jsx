@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./RegisterForm.module.css";
 import validate from "../../utils/Validations";
+import { postCreateUser } from "../../services/userServices";
 
 let RegisterForm = () => {
   const [FormState, setFormstate] = useState({
@@ -32,6 +33,7 @@ let RegisterForm = () => {
     setShowErrors(true);
 
     if (Object.keys(validationErrors).length === 0) {
+      postCreateUser(FormState);
       alert("User registered successfully");
     }
   };

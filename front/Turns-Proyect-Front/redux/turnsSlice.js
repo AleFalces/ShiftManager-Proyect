@@ -8,9 +8,11 @@ const turnsSlice = createSlice({
   name: "turns",
   initialState,
   reducers: {
-    allTurns: (state, action) => {},
+    allTurns: (state, action) => {
+      state.turns = action.payload;
+    },
   },
 });
 
-export const { allTurn } = turnsSlice.actions;
+export const { allTurns } = turnsSlice.actions;
 export default turnsSlice.reducer;

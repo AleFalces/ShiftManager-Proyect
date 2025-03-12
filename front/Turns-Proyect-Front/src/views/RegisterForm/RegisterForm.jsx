@@ -10,6 +10,7 @@ let RegisterForm = () => {
     phone: 0,
     username: "",
     password: "",
+    type: "user",
   });
 
   let [Error, setError] = useState({});
@@ -23,7 +24,6 @@ let RegisterForm = () => {
     });
 
     setError(validate(FormState));
-    console.log(Error);
   };
 
   let handlerSubmit = (event) => {

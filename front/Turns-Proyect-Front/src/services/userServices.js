@@ -20,9 +20,10 @@ export const getUserById = async (id) => {
   }
 };
 
-export const postCreateUser = async (usernData) => {
+export const postCreateUser = async (userData) => {
   try {
-    const response = await apiServices.put(`${path}/register`, usernData);
+    console.log("SOY USERDATA Y ESTOY EN POSTcREATE: ", userData);
+    const response = await apiServices.post(`${path}/register`, userData);
     return response;
   } catch (error) {
     throw new Error(`Erro fetchin : ${error.message}`);
@@ -31,10 +32,7 @@ export const postCreateUser = async (usernData) => {
 
 export const putLoginUser = async (loginData) => {
   try {
-    console.log(loginData);
-
     const response = await apiServices.post(`${path}/login`, loginData);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error(`Erro fetchin : ${error.message}`);

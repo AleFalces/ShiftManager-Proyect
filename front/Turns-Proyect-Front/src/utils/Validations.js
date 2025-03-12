@@ -10,7 +10,7 @@ const validate = (state) => {
 
   if (!state.phone) {
     errors.phone = "Phone number is required";
-  } else if (!/^\d{10}$/.test(state.phone.toString())) {
+  } else if (!/^\d{9}$/.test(state.phone.toString())) {
     errors.phone = "Invalid phone number";
   }
   if (!state.username.trim()) errors.username = "Username is required";

@@ -1,23 +1,33 @@
 import styles from "./NavBar.module.css";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 let Navbar = () => {
-  const userHaveAcount = true;
+  const user = useSelector((state) => state.users.isAuthenticated);
+  const location = useLocation();
+
   return (
     <div className={styles.Navbar}>
-      <Link to="/">
-        <span>Home</span>
-      </Link>
-      <Link to="/turns">
-        <span>Turns</span>
-      </Link>
-      <Link to="/about">
-        <span>About Us</span>
-      </Link>
+      <img src="../" alt=""></img>
 
-      {userHaveAcount === false ? (
+      {location.pathname !== "/" && (
+        <Link to="/">
+          <span>Home</span>
+        </Link>
+      )}
+      {location.pathname !== "/turns" && (
+        <Link to="/turns">
+          <span>Turns</span>
+        </Link>
+      )}
+      {location.pathname !== "/about" && (
+        <Link to="/about">
+          <span>About Us</span>
+        </Link>
+      )}
+
+      {user === true ? (
         <Link to="/register">
-          <span>Register</span>
+          <span>User Panel</span>
         </Link>
       ) : (
         <Link to="/login">

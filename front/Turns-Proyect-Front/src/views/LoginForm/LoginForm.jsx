@@ -3,7 +3,7 @@ import styles from "./LoginForm.module.css";
 import validatelogin from "../../utils/ValidateLogin";
 import { putLoginUser } from "../../services/userServices";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { userLogin } from "../../../redux/userSlice";
 
 let LoginForm = () => {
@@ -70,6 +70,11 @@ let LoginForm = () => {
         )}
 
         <button type="submit">Login</button>
+        <div>
+          <p>
+            Don't have an account? <Link to="/register">Sign up</Link>
+          </p>
+        </div>
       </form>
     </div>
   );

@@ -22,7 +22,6 @@ export const getUserById = async (id) => {
 
 export const postCreateUser = async (userData) => {
   try {
-    console.log("SOY USERDATA Y ESTOY EN POSTcREATE: ", userData);
     const response = await apiServices.post(`${path}/register`, userData);
     return response;
   } catch (error) {

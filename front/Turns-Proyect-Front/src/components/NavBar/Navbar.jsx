@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 let Navbar = () => {
   const user = useSelector((state) => state.users.isAuthenticated);
+
   const location = useLocation();
 
   return (
@@ -17,6 +18,12 @@ let Navbar = () => {
       {location.pathname !== "/turns" && (
         <Link to="/turns">
           <span>Turns</span>
+        </Link>
+      )}
+
+      {user === true && (
+        <Link to="/myturns">
+          <span>My Turns</span>
         </Link>
       )}
       {location.pathname !== "/about" && (

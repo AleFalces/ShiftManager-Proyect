@@ -1,11 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./PopUp.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { putReserveTurn } from "../../services/turnsServices";
+import { putCancelTurn, putReserveTurn } from "../../services/turnsServices";
+import { removeTurn } from "../../../redux/turnsSlice";
 
 export const PopUp = ({ turnData, setPopUp }) => {
   const { day, time, turnId } = turnData;
-
+  const dispatch = useDispatch();
   const location = useLocation();
   const user = useSelector((state) => state.users);
 
@@ -13,13 +14,20 @@ export const PopUp = ({ turnData, setPopUp }) => {
     setPopUp(false);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     const confirmData = {
       id: user.users.id,
       turnId: turnId,
     };
-
-    putReserveTurn(confirmData);
+    if (location.pathname === "/turns") {
+      await putReserveTurn(confirmData);
+      dispatch(removeTurn(turnId));
+      setPopUp(false);
+    } else {
+      putCancelTurn(confirmData);
+      dispatch(removeTurn(turnId));
+      setPopUp(false);
+    }
   };
 
   return (

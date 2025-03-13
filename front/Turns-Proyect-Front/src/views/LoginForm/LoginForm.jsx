@@ -34,7 +34,6 @@ let LoginForm = () => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const user = await putLoginUser(loginData);
-        console.log("Usuario recibido:", user);
         dispatch(userLogin(user));
         navigate("/");
       } catch (error) {

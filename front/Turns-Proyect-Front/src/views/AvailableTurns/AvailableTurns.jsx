@@ -5,11 +5,10 @@ import { getAllTurns } from "../../services/turnsServices";
 import Turn from "../../components/Turn/Turn";
 import { useDispatch, useSelector } from "react-redux";
 import { allTurns } from "../../../redux/turnsSlice";
-import { PopUp } from "../../components/PopUp/PopUp";
 
 let AvailableTurns = () => {
   const [error, setError] = useState(null);
-  const turns = useSelector((state) => state.turns.turns);
+  const turns = useSelector((state) => state.turns);
 
   const dispatch = useDispatch();
 
@@ -18,6 +17,7 @@ let AvailableTurns = () => {
       try {
         const data = await getAllTurns();
         dispatch(allTurns(data));
+
         setError(null);
       } catch (error) {
         setError(error.message);

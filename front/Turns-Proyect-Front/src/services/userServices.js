@@ -40,7 +40,7 @@ export const putLoginUser = async (loginData) => {
 
 export const deleteUser = async (id) => {
   try {
-    const response = await apiServices.delete(`${path}/cancel/${id}`);
+    const response = await apiServices.delete(`${path}/delete/${id}`);
     return response.data;
   } catch (error) {
     throw new Error(`Erro fetchin : ${error.message}`);
@@ -49,7 +49,7 @@ export const deleteUser = async (id) => {
 
 export const putUpdateuser = async (turnData) => {
   try {
-    const response = await apiServices.put(`${path}/updat`, turnData);
+    const response = await apiServices.put(`${path}/update`, turnData);
     return response.data;
   } catch (error) {
     throw new Error(`Erro fetchin : ${error.message}`);

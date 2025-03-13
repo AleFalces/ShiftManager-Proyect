@@ -11,6 +11,7 @@ let RegisterForm = () => {
     username: "",
     password: "",
     type: "user",
+    Cpassword: "",
   });
 
   let [Error, setError] = useState({});

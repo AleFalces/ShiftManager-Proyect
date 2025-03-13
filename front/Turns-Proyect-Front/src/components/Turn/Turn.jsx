@@ -17,7 +17,7 @@ let Turn = ({ turn }) => {
       <div>
         <p> {day}</p>
         <p> {time} </p>
-        <p>{status}</p>
+        {location.pathname !== "/myturns" && <p>{status}</p>}
       </div>
       <div className={styles.buttonContainer}>
         {location.pathname === "/myturns" ? (

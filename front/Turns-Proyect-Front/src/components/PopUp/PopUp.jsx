@@ -3,7 +3,7 @@ import styles from "./PopUp.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { putCancelTurn, putReserveTurn } from "../../services/turnsServices";
 import { removeTurn } from "../../../redux/turnsSlice";
-import { cancelTurn } from "../../../redux/userSlice";
+import { cancelTurn, reserveTurn } from "../../../redux/userSlice";
 
 export const PopUp = ({ turnData, setPopUp }) => {
   const { day, time, turnId } = turnData;
@@ -24,6 +24,7 @@ export const PopUp = ({ turnData, setPopUp }) => {
     if (location.pathname === "/turns") {
       await putReserveTurn(confirmData);
       dispatch(removeTurn(turnId));
+      dispatch(reserveTurn(turnData));
       setPopUp(false);
     } else {
       putCancelTurn(confirmData);

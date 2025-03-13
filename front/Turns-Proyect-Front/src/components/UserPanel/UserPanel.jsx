@@ -1,9 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./UserPanel.module.css";
+import { deleteUser } from "../../services/userServices";
+import { useNavigate } from "react-router-dom";
+import { userLogout } from "../../../redux/userSlice";
 
 function UserPanel() {
-  const { name, phone, email } = useSelector((state) => state.users.user);
+  const { name, phone, email, id } = useSelector((state) => state.users.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleDeleteUser = async () => {
+    deleteUser(id);
+    dispatch(userLogout({}));
+    navigate("/");
+  };
 
   return (
     <div className={styles.profielContainer}>
@@ -13,7 +24,7 @@ function UserPanel() {
         <p>{email}</p>
         <p>{phone}</p>
       </div>
-      <button>Cancel your Acount</button>
+      <button onClick={handleDeleteUser}>Cancel your Acount</button>
     </div>
   );
 }

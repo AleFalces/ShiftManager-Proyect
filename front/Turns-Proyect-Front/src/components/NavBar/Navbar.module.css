@@ -1,8 +1,42 @@
 .Navbar {
-  padding: 3%;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
   background-color: #7cd7cf;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdownToggle {
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdowMenu {
+  position: re;
+  top: 30px;
+  background-color: #444;
+  border: 1px solid #555;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dropdownMenu a {
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.dropdownMenu a:hover {
+  background-color: #555;
 }

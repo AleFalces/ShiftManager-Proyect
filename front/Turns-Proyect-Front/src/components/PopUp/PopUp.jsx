@@ -1,3 +1,4 @@
+import styles from "./PopUp.module.css";
 import { useLocation } from "react-router-dom";
 
 export const PopUp = ({ turnData, setPopUp }) => {
@@ -12,7 +13,7 @@ export const PopUp = ({ turnData, setPopUp }) => {
   const handleConfirm = () => {};
 
   return (
-    <div>
+    <div className={styles.modal}>
       <p>
         wants to {location.pathname !== "/myturns" ? "reserve" : "cancel"} rhis
         shift?

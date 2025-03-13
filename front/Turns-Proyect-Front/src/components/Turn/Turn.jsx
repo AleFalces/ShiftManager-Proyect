@@ -3,7 +3,7 @@ import styles from "./Turns.module.css";
 import { PopUp } from "../PopUp/PopUp";
 
 let Turn = ({ turn }) => {
-  const { day, time, status, turnID } = turn;
+  const { day, time, status } = turn;
   const [popUp, setPopUp] = useState(false);
 
   const openPopUp = () => {
@@ -19,7 +19,7 @@ let Turn = ({ turn }) => {
       </div>
       <div className={styles.buttonContainer}>
         {status === "avalable" ? (
-          <button> Cancel</button>
+          <button onClick={openPopUp}> Cancel</button>
         ) : (
           <button onClick={openPopUp}> Reserve</button>
         )}

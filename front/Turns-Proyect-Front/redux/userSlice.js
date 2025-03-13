@@ -11,8 +11,13 @@ const userSlice = createSlice({
       state.users = action.payload;
       state.isAuthenticated = true;
     },
+    cancelTurn: (state, action) => {
+      state.users.turns = state.users.turns.filter(
+        (turn) => turn.turnId !== action.payload
+      );
+    },
   },
 });
 
-export const { userLogin } = userSlice.actions;
+export const { userLogin, cancelTurn } = userSlice.actions;
 export default userSlice.reducer;

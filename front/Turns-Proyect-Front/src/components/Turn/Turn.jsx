@@ -1,9 +1,11 @@
 import { useState } from "react";
 import styles from "./Turns.module.css";
 import { PopUp } from "../PopUp/PopUp";
+import { useLocation } from "react-router-dom";
 
 let Turn = ({ turn }) => {
   const { day, time, status } = turn;
+  const location = useLocation();
   const [popUp, setPopUp] = useState(false);
 
   const openPopUp = () => {
@@ -18,7 +20,7 @@ let Turn = ({ turn }) => {
         <p>{status}</p>
       </div>
       <div className={styles.buttonContainer}>
-        {status === "avalable" ? (
+        {location.pathname === "/myturns" ? (
           <button onClick={openPopUp}> Cancel</button>
         ) : (
           <button onClick={openPopUp}> Reserve</button>

@@ -6,6 +6,7 @@ import AvailableTurns from "./views/AvailableTurns/AvailableTurns";
 import RegisterForm from "./views/RegisterForm/RegisterForm";
 import { Route, Routes } from "react-router-dom";
 import Myturns from "./views/MyTurns/MyTurns";
+import UserPanel from "./components/UserPanel/UserPanel";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path={"/myturns"} element={<Myturns />} />
         <Route path={"/register"} element={<RegisterForm />} />
         <Route path={"/login"} element={<LoginForm />} />
+        <Route path={"/userPanel"} element={<UserPanel />} />
         <Route path={"/about"} element={<Home />} />
       </Routes>
     </>

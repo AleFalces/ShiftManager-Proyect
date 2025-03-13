@@ -15,10 +15,9 @@ export const PopUp = ({ turnData, setPopUp }) => {
     setPopUp(false);
   };
 
-  console.log(user.users.turns);
   const handleConfirm = async () => {
     const confirmData = {
-      id: user.users.id,
+      id: user.user.id,
       turnId: turnId,
     };
 

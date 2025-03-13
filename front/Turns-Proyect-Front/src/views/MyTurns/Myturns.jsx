@@ -3,8 +3,8 @@ import Turn from "../../components/Turn/Turn";
 import styles from "./Myturns.module.css";
 
 const Myturns = () => {
-  let turnsToUser = useSelector((state) => state.users.users.turns);
-  console.log(styles);
+  let turnsToUser = useSelector((state) => state.users.user.turns);
+
   return (
     <div className={styles.container}>
       <div className={styles.turnsContainer}>

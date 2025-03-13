@@ -3,16 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    users: {},
+    user: {},
     isAuthenticated: false,
   },
   reducers: {
     userLogin: (state, action) => {
-      state.users = action.payload;
+      state.user = action.payload;
       state.isAuthenticated = true;
     },
     cancelTurn: (state, action) => {
-      state.users.turns = state.users.turns.filter(
+      state.user.turns = state.user.turns.filter(
         (turn) => turn.turnId !== action.payload
       );
     },

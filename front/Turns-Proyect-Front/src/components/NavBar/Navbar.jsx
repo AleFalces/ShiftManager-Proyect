@@ -33,7 +33,7 @@ let Navbar = () => {
       )}
 
       {user === true ? (
-        <Link to="/register">
+        <Link to="/userPanel">
           <span>User Panel</span>
         </Link>
       ) : (

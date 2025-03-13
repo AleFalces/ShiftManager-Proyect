@@ -1,15 +1,14 @@
 .modal {
   position: absolute;
   display: flex;
-  border-radius: 5px;
   flex-direction: column;
-
   width: 500px;
   height: 400px;
   align-items: center;
   justify-content: space-evenly;
   background-color: #16c1c8;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 5;
 }
 

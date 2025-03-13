@@ -1,7 +1,15 @@
+import { useState } from "react";
 import styles from "./Turns.module.css";
+import { PopUp } from "../PopUp/PopUp";
 
 let Turn = ({ turn }) => {
-  const { day, time, status } = turn;
+  const { day, time, status, turnID } = turn;
+  const [popUp, setPopUp] = useState(false);
+
+  const openPopUp = () => {
+    setPopUp(true);
+  };
+
   return (
     <div className={styles.turn}>
       <div>
@@ -13,8 +21,9 @@ let Turn = ({ turn }) => {
         {status === "avalable" ? (
           <button> Cancel</button>
         ) : (
-          <button> Reserve</button>
+          <button onClick={openPopUp}> Reserve</button>
         )}
+        {popUp === true && <PopUp turnData={turn} setPopUp={setPopUp} />}
       </div>
     </div>
   );

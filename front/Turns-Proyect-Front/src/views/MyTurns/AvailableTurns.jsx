@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import styles from "./MyTurns.module.css";
+import styles from "./AvailableTurns.module.css";
 import { Suspense } from "react";
 import { getAllTurns } from "../../services/turnsServices";
 import Turn from "../../components/Turn/Turn";
 import { useDispatch, useSelector } from "react-redux";
 import { allTurns } from "../../../redux/turnsSlice";
+import { PopUp } from "../../components/PopUp/PopUp";
 
-let MyTurns = () => {
+let AvailableTurns = () => {
   const [error, setError] = useState(null);
   const turns = useSelector((state) => state.turns.turns);
 
@@ -42,4 +43,4 @@ let MyTurns = () => {
   );
 };
 
-export default MyTurns;
+export default AvailableTurns;

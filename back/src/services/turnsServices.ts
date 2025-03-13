@@ -6,9 +6,8 @@ import userRepository from "../repositories/userRepository";
 
 export let getAllTurnServices = async (): Promise<Turn[]> => {
   const allTurns: Turn[] | undefined = await TurnSource.find({
-    relations: {
-      user: true,
-    },
+    where: { status: "available" }, // Filtra solo los turnos disponibles
+    order: { day: "ASC", time: "ASC" },
   });
   return allTurns;
 };

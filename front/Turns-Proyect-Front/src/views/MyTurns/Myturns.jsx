@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Turn from "../../components/Turn/Turn";
 import styles from "./Myturns.module.css";
 import { useNavigate } from "react-router-dom";
+import FilterTurs from "../../components/FilterTurns/FilterTurs";
 
 const Myturns = () => {
   let navigate = useNavigate();
@@ -19,7 +20,7 @@ const Myturns = () => {
             <button onClick={handleRedirect}>reserve an appointment </button>
           </div>
         ) : (
-          turnsToUser?.map((turn) => <Turn key={turn.turnId} turn={turn} />)
+          <FilterTurs />
         )}
       </div>
     </div>
@@ -27,3 +28,4 @@ const Myturns = () => {
 };
 
 export default Myturns;
+// turnsToUser?.map((turn) => <Turn key={turn.turnId} turn={turn} />

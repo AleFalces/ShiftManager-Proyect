@@ -5,6 +5,7 @@ import { getAllTurns } from "../../services/turnsServices";
 import Turn from "../../components/Turn/Turn";
 import { useDispatch, useSelector } from "react-redux";
 import { allTurns } from "../../../redux/turnsSlice";
+import FilterTurs from "../../components/FilterTurns/FilterTurs";
 
 let AvailableTurns = () => {
   const [error, setError] = useState(null);
@@ -31,16 +32,19 @@ let AvailableTurns = () => {
   return (
     <div className={styles.container}>
       <div className={styles.turnsContainer}>
-        <Suspense fallback={<div>Loading...</div>}>
-          {error !== null ? (
-            <p> Data Error</p>
-          ) : (
-            allturns?.map((turn) => <Turn key={turn.turnId} turn={turn} />)
-          )}
-        </Suspense>
+        <FilterTurs></FilterTurs>
       </div>
     </div>
   );
 };
 
 export default AvailableTurns;
+{
+  /* <Suspense fallback={<div>Loading...</div>}>
+{error !== null ? (
+  <p> Data Error</p>
+) : (
+  allturns?.map((turn) => <Turn key={turn.turnId} turn={turn} />)
+)}
+</Suspense> */
+}

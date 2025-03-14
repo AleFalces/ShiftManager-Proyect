@@ -8,7 +8,7 @@ import { allTurns } from "../../../redux/turnsSlice";
 
 let AvailableTurns = () => {
   const [error, setError] = useState(null);
-  const turns = useSelector((state) => state.turns);
+  const allturns = useSelector((state) => state.turns);
 
   const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ let AvailableTurns = () => {
           {error !== null ? (
             <p> Data Error</p>
           ) : (
-            turns?.map((turn) => <Turn key={turn.turnId} turn={turn} />)
+            allturns?.map((turn) => <Turn key={turn.turnId} turn={turn} />)
           )}
         </Suspense>
       </div>

@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import Myturns from "./views/MyTurns/MyTurns";
 import UserPanel from "./components/UserPanel/UserPanel";
 import AboutUs from "./components/AboutUs/AboutUs";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path={"/userPanel"} element={<UserPanel />} />
         <Route path={"/about"} element={<AboutUs />} />
       </Routes>
+      <Footer />
     </>
   );
 }

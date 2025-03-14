@@ -1,10 +1,8 @@
-let HomeCard = () => {
+let HomeCard = ({ text }) => {
   return (
     <>
-      <div>
-        voy a ser el texto de la homecard y en el caso de como sacar turno un
-        link
-      </div>
+      <h2>{text.title}</h2>
+      <p>{text.text}</p>
     </>
   );
 };

@@ -1,14 +1,17 @@
+import { useState } from "react";
 import HomeCard from "../../components/HomeCard/HomeCard";
+import homeText from "../../helpers/homeTexts";
 
 let Home = () => {
+  const [textToShow, setTextToShow] = useState(homeText);
+  console.log(homeText);
+
   return (
     <>
-      <h2>Soy la home</h2>
-      <HomeCard />
-      <HomeCard />
-      <HomeCard />
-      <HomeCard />
-      <HomeCard />
+      <h1>Hello</h1>
+      {textToShow.map((text) => (
+        <HomeCard text={text} />
+      ))}
     </>
   );
 };

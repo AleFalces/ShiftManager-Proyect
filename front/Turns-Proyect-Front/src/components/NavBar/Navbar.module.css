@@ -2,7 +2,7 @@
   padding: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   background-color: #7cd7cf;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -39,4 +39,10 @@
 
 .dropdownMenu a:hover {
   background-color: #555;
+}
+
+.logo {
+  width: 80px;
+  border-radius: 50%;
+  margin-right: 100px;
 }

@@ -24,15 +24,15 @@ const useAlertUser = () => {
       try {
         await deleteUser(id);
         dispatch(userLogout());
-        Swal.fire("¡Eliminado!", "El usuario ha sido eliminado.", "success");
+        Swal.fire("¡Deleted!", "The user has been deleted.", "success");
         navigate("/");
       } catch (error) {
-        Swal.fire("Error", "No se pudo eliminar el usuario.", "error");
+        Swal.fire("Error", "The user could not be deleted.", "error");
       }
     }
   };
 
-  return alertUser; // ✅ Retornar la función para poder usarla en el componente
+  return alertUser;
 };
 
 export default useAlertUser;

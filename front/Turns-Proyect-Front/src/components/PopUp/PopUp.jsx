@@ -1,57 +1,84 @@
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./PopUp.module.css";
-import { Link, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useLocation, Link } from "react-router-dom";
 import { putCancelTurn, putReserveTurn } from "../../services/turnsServices";
 import { removeTurn } from "../../../redux/turnsSlice";
 import { cancelTurn, reserveTurn } from "../../../redux/userSlice";
+import { useEffect } from "react";
 
-export const PopUp = ({ turnData, setPopUp }) => {
+const PopUp = ({ turnData, setPopUp }) => {
   const { day, time, turnId } = turnData;
   const dispatch = useDispatch();
   const location = useLocation();
   const user = useSelector((state) => state.users);
 
-  const handldleClose = () => {
-    setPopUp(false);
-  };
+  useEffect(() => {
+    const showAlert = async () => {
+      if (!user.isAuthenticated) {
+        Swal.fire({
+          icon: "info",
+          title: "You must log in",
+          text: "Please log in to confirm the shift.",
+          confirmButtonText: "Go to login",
+          showCancelButton: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/login"; // Redirige manualmente
+          }
+        });
 
-  const handleConfirm = async () => {
-    const confirmData = {
-      id: user.user.id,
-      turnId: turnId,
+        setPopUp(false); // Cierra el PopUp
+        return;
+      }
+
+      const isReserving = location.pathname === "/turns";
+      const action = isReserving ? "reserve" : "cancel";
+
+      Swal.fire({
+        title: `Do you want to ${action} this shift?`,
+        html: `<p>Day: <b>${day}</b></p><p>Time: <b>${time}</b></p>`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: `Yes, ${action}`,
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const confirmData = { id: user.user.id, turnId };
+
+            if (isReserving) {
+              await putReserveTurn(confirmData);
+              dispatch(removeTurn(turnId));
+              dispatch(reserveTurn(turnData));
+            } else {
+              await putCancelTurn(confirmData);
+              dispatch(cancelTurn(turnId));
+            }
+
+            Swal.fire({
+              icon: "success",
+              title: `Shift ${isReserving ? "reserved" : "canceled"}!`,
+              text: "Your action was successful.",
+            });
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "An error occurred while processing your request.",
+            });
+          }
+        }
+
+        setPopUp(false); // Cierra el PopUp después de la acción
+      });
     };
 
-    if (location.pathname === "/turns") {
-      await putReserveTurn(confirmData);
-      dispatch(removeTurn(turnId));
-      dispatch(reserveTurn(turnData));
-      setPopUp(false);
-    } else {
-      putCancelTurn(confirmData);
-      dispatch(cancelTurn(turnId));
-      setPopUp(false);
-    }
-  };
+    showAlert();
+  }, [turnData, setPopUp, dispatch, location.pathname, user]);
 
-  return (
-    <div className={styles.modal}>
-      <p>
-        wants to {location.pathname !== "/myturns" ? "reserve" : "cancel"} This
-        shift?
-      </p>
-      <p>Day: {day}</p>
-      <p> Time: {time}</p>
-      <div className={styles.buttonContainer}>
-        <button onClick={handldleClose}> Cancel</button>
-        <br></br>
-        {user.isAuthenticated === false ? (
-          <Link to="/login">
-            <button>you must log in</button>
-          </Link>
-        ) : (
-          <button onClick={handleConfirm}> Confirm</button>
-        )}
-      </div>
-    </div>
-  );
+  return null; // No renderiza nada, solo ejecuta el alert
 };
+
+export default PopUp;

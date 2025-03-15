@@ -32,19 +32,10 @@ let AvailableTurns = () => {
   return (
     <div className={styles.container}>
       <div className={styles.turnsContainer}>
-        <FilterTurs></FilterTurs>
+        {error !== null && !allturns ? <p> Data Error</p> : <FilterTurs />}
       </div>
     </div>
   );
 };
 
 export default AvailableTurns;
-{
-  /* <Suspense fallback={<div>Loading...</div>}>
-{error !== null ? (
-  <p> Data Error</p>
-) : (
-  allturns?.map((turn) => <Turn key={turn.turnId} turn={turn} />)
-)}
-</Suspense> */
-}

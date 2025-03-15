@@ -2,21 +2,14 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Turn from "../Turn/Turn";
 import styles from "./FilterTurns.module.css";
-import { useLocation } from "react-router-dom";
 
 const FilterTurs = () => {
   const [selectedDay, setSelectedDay] = useState("");
   const turns = useSelector((state) => state.turns);
-  let turnsToUser = useSelector((state) => state.users.user.turns);
-  const location = useLocation();
 
   const filteredTurns = selectedDay
     ? turns.filter((turn) => turn.day === selectedDay)
     : turns;
-
-  const userFilteredTurns = selectedDay
-    ? turnsToUser.filter((turn) => turn.day === selectedDay)
-    : turnsToUser;
 
   return (
     <div>
@@ -34,11 +27,14 @@ const FilterTurs = () => {
       </select>
 
       <div>
-        {location.pathname === "/turns"
-          ? filteredTurns.map((turn) => <Turn key={turn.turnId} turn={turn} />)
-          : userFilteredTurns.map((turn) => (
-              <Turn key={turn.turnId} turn={turn} />
-            ))}
+        {!filteredTurns.length ? (
+          <p>
+            There are no shifts available for that day, please choose another
+            day.
+          </p>
+        ) : (
+          filteredTurns.map((turn) => <Turn key={turn.turnId} turn={turn} />)
+        )}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import Turn from "../../components/Turn/Turn";
 import styles from "./Myturns.module.css";
 import { useNavigate } from "react-router-dom";
 import FilterTurs from "../../components/FilterTurns/FilterTurs";
+import FilterUserTurs from "../../components/FilterUserTurns/FilterUserTurns";
 
 const Myturns = () => {
   let navigate = useNavigate();
@@ -20,7 +21,7 @@ const Myturns = () => {
             <button onClick={handleRedirect}>reserve an appointment </button>
           </div>
         ) : (
-          <FilterTurs />
+          <FilterUserTurs navigate={handleRedirect} />
         )}
       </div>
     </div>

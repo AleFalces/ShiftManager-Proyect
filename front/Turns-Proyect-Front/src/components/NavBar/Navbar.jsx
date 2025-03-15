@@ -45,7 +45,7 @@ let Navbar = () => {
           </Link>
         )}
 
-        {user === true && (
+        {user === true && location.pathname !== "/myturns" && (
           <Link to="/myturns">
             <button>My Turns</button>
           </Link>

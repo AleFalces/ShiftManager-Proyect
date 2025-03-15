@@ -1,17 +1,25 @@
+import ourServicesImg from "../assets/OurServices.jpg";
+import personalizedCareImg from "../assets/PersonalizedCare.jpg";
+import edgeTechnologyImg from "../assets/EdgeTechnology.jpg";
+
 const homeText = [
   {
+    id: 1,
     title: "Our Services",
-    text: " At our dental clinic, we offer a wide range of services to take care of your oral health: general dentistry, orthodontics, implants, cosmetic dentistry, and much more. Our team of highly trained specialists is committed to providing you with personalized, high-quality care.",
+    img: ourServicesImg,
+    text: "At our dental clinic, we offer a wide range of services to take care of your oral health...",
   },
-
   {
+    id: 2,
     title: "Personalized Care",
-    text: "We know that every smile is unique, which is why we focus on offering warm, customized attention tailored to your needs. From your first consultation to the end of your treatment, we are here to support you every step of the way, ensuring a comfortable and satisfying experience.",
+    img: personalizedCareImg,
+    text: "We know that every smile is unique, which is why we focus on offering warm, customized attention...",
   },
-
   {
+    id: 3,
     title: "Cutting-Edge Technology",
-    text: "We use modern equipment and innovative techniques to guarantee precise diagnoses and effective treatments. The combination of advanced technology and our specialized staff allows us to offer the best care for your oral health.",
+    img: edgeTechnologyImg,
+    text: "We use modern equipment and innovative techniques to guarantee precise diagnoses...",
   },
 ];
 

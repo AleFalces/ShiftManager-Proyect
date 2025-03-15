@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./AvailableTurns.module.css";
-import { Suspense } from "react";
 import { getAllTurns } from "../../services/turnsServices";
-import Turn from "../../components/Turn/Turn";
 import { useDispatch, useSelector } from "react-redux";
 import { allTurns } from "../../../redux/turnsSlice";
 import FilterTurs from "../../components/FilterTurns/FilterTurs";

@@ -2,8 +2,8 @@ import styles from "./NavBar.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { userLogout } from "../../../redux/userSlice";
 import logo from "../../assets/istockphoto-1196233488-612x612.jpg";
+import useLogoutAlert from "../../utils/useLogoutAlert";
 
 let Navbar = () => {
   const user = useSelector((state) => state.users.isAuthenticated);
@@ -14,19 +14,8 @@ let Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const { handleLogout } = useLogoutAlert();
   const location = useLocation();
-
-  const handleLogout = () => {
-    alert("logout sucesfuell");
-    if (
-      location.pathname === "/myturns" ||
-      location.pathname === "/userPanel" ||
-      location.pathname === "/historial"
-    ) {
-      navigate("/");
-    }
-    dispatch(userLogout());
-  };
 
   return (
     <nav>

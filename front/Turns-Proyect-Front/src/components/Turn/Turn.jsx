@@ -2,10 +2,8 @@ import { useState } from "react";
 import styles from "./Turns.module.css";
 import PopUp from "../PopUp/PopUp";
 import { useLocation } from "react-router-dom";
-import UseTurnReserve from "../../utils/UseTurnReserve";
 
 let Turn = ({ turn }) => {
-  const turnReserve = UseTurnReserve();
   const { day, time, status } = turn;
   const location = useLocation();
   const [popUp, setPopUp] = useState(false);

@@ -11,7 +11,7 @@ const LoginForm = () => {
   });
   const [error, setError] = useState({});
   const [showErrors, setShowErrors] = useState(false);
-  const { handleLogin } = useLoginAlert(); // Usamos el hook aquí
+  const { handleLogin } = useLoginAlert();
 
   const handlerInputs = (event) => {
     const { name, value } = event.target;
@@ -28,7 +28,7 @@ const LoginForm = () => {
     setShowErrors(true);
 
     if (Object.keys(validationErrors).length === 0) {
-      handleLogin(loginData); // Llamamos al custom hook para manejar el login y las alertas
+      handleLogin(loginData);
     }
   };
 

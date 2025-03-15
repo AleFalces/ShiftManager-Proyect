@@ -23,11 +23,11 @@ const PopUp = ({ turnData, setPopUp }) => {
           showCancelButton: true,
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = "/login"; // Redirige manualmente
+            window.location.href = "/login";
           }
         });
 
-        setPopUp(false); // Cierra el PopUp
+        setPopUp(false);
         return;
       }
 
@@ -71,14 +71,14 @@ const PopUp = ({ turnData, setPopUp }) => {
           }
         }
 
-        setPopUp(false); // Cierra el PopUp después de la acción
+        setPopUp(false);
       });
     };
 
     showAlert();
   }, [turnData, setPopUp, dispatch, location.pathname, user]);
 
-  return null; // No renderiza nada, solo ejecuta el alert
+  return null;
 };
 
 export default PopUp;

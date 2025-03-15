@@ -1,13 +1,11 @@
 import { useSelector } from "react-redux";
-import Turn from "../../components/Turn/Turn";
 import styles from "./Myturns.module.css";
 import { useNavigate } from "react-router-dom";
-import FilterTurs from "../../components/FilterTurns/FilterTurs";
 import FilterUserTurs from "../../components/FilterUserTurns/FilterUserTurns";
 
 const Myturns = () => {
-  let navigate = useNavigate();
   let turnsToUser = useSelector((state) => state.users.user.turns);
+  let navigate = useNavigate();
   const handleRedirect = () => {
     navigate("/turns");
   };

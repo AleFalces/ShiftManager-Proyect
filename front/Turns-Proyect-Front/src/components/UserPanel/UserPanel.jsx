@@ -1,22 +1,15 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./UserPanel.module.css";
-import { useNavigate } from "react-router-dom";
-import { deleteUser } from "../../services/userServices";
-import { userLogout } from "../../../redux/userSlice";
-import alertUser from "../../utils/alert";
-import Swal from "sweetalert2";
+
+import UsealertUser from "../../utils/UseAlertUser";
 
 function UserPanel() {
   const { name, phone, email, id } = useSelector((state) => state.users.user);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const alertUser = UsealertUser();
 
-  const handleDeleteUser = async () => {
-    alertUser();
-    // deleteUser(id);
-    // dispatch(userLogout({}));
-    // navigate("/");
+  const handleDeleteUser = () => {
+    alertUser(id);
   };
 
   return (

@@ -60,8 +60,11 @@ const LoginForm = () => {
 
         <button type="submit">Login</button>
         <div>
-          <p>
-            Don't have an account? <Link to="/register">Sign up</Link>
+          <p className={styles.text}>
+            Don't have an account?{" "}
+            <Link to="/register" className={styles.link}>
+              Sign up
+            </Link>
           </p>
         </div>
       </form>

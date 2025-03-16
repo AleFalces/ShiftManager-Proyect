@@ -14,12 +14,16 @@ const Myturns = () => {
       <div className={styles.turnsContainer}>
         {!turnsToUser.length ? (
           <div>
+            <h2 className={styles.title}>Your reserved shifts </h2>
             <p>You don't have any appointments reserved.</p>
             <p>You can reserve it here: </p>
             <button onClick={handleRedirect}>reserve an appointment </button>
           </div>
         ) : (
-          <FilterUserTurs navigate={handleRedirect} />
+          <div>
+            <h2 className={styles.title}>Your reserved shifts </h2>
+            <FilterUserTurs navigate={handleRedirect} />
+          </div>
         )}
       </div>
     </div>

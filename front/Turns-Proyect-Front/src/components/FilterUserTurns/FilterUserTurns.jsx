@@ -35,7 +35,8 @@ const FilterUserTurs = () => {
       <div>
         {!userFilteredTurns.length ? (
           <div>
-            <p>YYou don't have any appointments booked for that day.</p>
+            <h2 className={styles.title}>Your reserved shifts </h2>
+            <p>You don't have any appointments booked for that day.</p>
             <p>You can reserve it here: </p>
             <button onClick={handleRedirect}>reserve an appointment</button>
           </div>

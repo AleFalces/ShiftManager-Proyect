@@ -7,6 +7,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 10;
+  margin-bottom: 15px;
 }
 
 .Navbar a {
@@ -51,11 +52,12 @@
   position: absolute;
   top: 40px;
   right: 0;
-  background-color: #e1ecd6;
+  background-color: #f4ffe9;
   border: 1px solid #aee1d3;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
@@ -64,7 +66,7 @@
 }
 
 .dropdownMenu a {
-  color: #165c5f;
+  color: #114142;
   font-size: 14px;
   padding: 8px;
   text-decoration: none;
@@ -77,12 +79,11 @@
   text-decoration: underline;
 }
 
-/* Botón de logout */
 .dropdownMenu button {
   background: none;
   border: none;
-  color: #29585a;
-  font-size: 14px;
+  color: #3d8083;
+  font-size: 16px;
   cursor: pointer;
   padding: 8px;
   text-align: left;

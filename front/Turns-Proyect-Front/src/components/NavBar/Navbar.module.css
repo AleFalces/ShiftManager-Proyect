@@ -1,11 +1,31 @@
 .Navbar {
-  padding: 10px;
+  padding: 15px 20px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: #7cd7cf;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.Navbar a {
+  text-decoration: none;
+  color: #165c5f;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 15px;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.Navbar a:hover {
+  color: #16c1c8;
+  text-decoration: underline;
+}
+
+.logo {
+  width: 80px;
+  border-radius: 50%;
 }
 
 .dropdown {
@@ -14,35 +34,64 @@
 
 .dropdownToggle {
   background: none;
-  color: white;
+  color: #165c5f;
   border: none;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 
-.dropdowMenu {
-  position: re;
-  top: 30px;
-  background-color: #444;
-  border: 1px solid #555;
-  padding: 10px;
+.dropdownToggle:hover {
+  color: #16c1c8;
+  text-decoration: underline;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #e1ecd6;
+  border: 1px solid #aee1d3;
   border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 10px;
+  min-width: 150px;
+  z-index: 100;
 }
 
 .dropdownMenu a {
-  color: white;
+  color: #165c5f;
+  font-size: 14px;
+  padding: 8px;
   text-decoration: none;
-  padding: 5px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .dropdownMenu a:hover {
-  background-color: #555;
+  background-color: #aee1d3;
+  color: #16c1c8;
+  text-decoration: underline;
 }
 
-.logo {
-  width: 80px;
-  border-radius: 50%;
-  margin-right: 100px;
+/* Botón de logout */
+.dropdownMenu button {
+  background: none;
+  border: none;
+  color: #29585a;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px;
+  text-align: left;
+  width: 100%;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdownMenu button:hover {
+  background-color: #aee1d3;
+  color: #5e8be0;
+  text-decoration: underline;
 }

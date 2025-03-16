@@ -23,29 +23,29 @@ let Navbar = () => {
         </Link>
         {location.pathname !== "/" && (
           <Link to="/">
-            <button>Home</button>
+            <a>Home</a>
           </Link>
         )}
         {location.pathname !== "/turns" && (
           <Link to="/turns">
-            <button>Turns</button>
+            <a>Turns</a>
           </Link>
         )}
 
         {user === true && location.pathname !== "/myturns" && (
           <Link to="/myturns">
-            <button>My Turns</button>
+            <a>My Turns</a>
           </Link>
         )}
         {location.pathname !== "/about" && (
           <Link to="/about">
-            <button>About Us</button>
+            <a>About Us</a>
           </Link>
         )}
 
         {user === true ? (
           <div className={styles.dropdown} onClick={toggleDropdown}>
-            <button className={styles.dropdownToggle}>User Options</button>
+            <a className={styles.dropdownToggle}>User Options</a>
             {isDropdownOpen && (
               <div className={styles.dropdownMenu}>
                 <Link to="/userPanel">
@@ -54,13 +54,15 @@ let Navbar = () => {
                 <Link to="/historial">
                   <button>Historial</button>
                 </Link>
-                <button onClick={handleLogout}>LogOut</button>
+                <Link>
+                  <button onClick={handleLogout}>LogOut</button>
+                </Link>
               </div>
             )}
           </div>
         ) : (
           <Link to="/login">
-            <button>Login</button>
+            <a>Login</a>
           </Link>
         )}
       </div>

@@ -20,10 +20,7 @@ const Myturns = () => {
             <button onClick={handleRedirect}>reserve an appointment </button>
           </div>
         ) : (
-          <div>
-            <h2 className={styles.title}>Your reserved shifts </h2>
-            <FilterUserTurs navigate={handleRedirect} />
-          </div>
+          <FilterUserTurs navigate={handleRedirect} />
         )}
       </div>
     </div>

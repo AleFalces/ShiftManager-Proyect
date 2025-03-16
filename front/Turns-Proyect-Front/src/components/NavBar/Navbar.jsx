@@ -28,7 +28,7 @@ let Navbar = () => {
         )}
         {location.pathname !== "/turns" && (
           <Link to="/turns">
-            <a>Turns</a>
+            <a>Reserve an Turn</a>
           </Link>
         )}
 

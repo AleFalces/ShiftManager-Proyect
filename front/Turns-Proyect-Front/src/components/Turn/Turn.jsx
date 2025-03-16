@@ -14,10 +14,13 @@ let Turn = ({ turn }) => {
 
   return (
     <div className={styles.turn}>
-      <div>
-        <p> {day}</p>
-        <p> {time} </p>
-        {location.pathname !== "/myturns" && <p>{status}</p>}
+      <div className={styles.turnData}>
+        <p className={styles.text}> Day: {day}</p>
+        <br></br>
+        <p className={styles.text}> Time: {time} </p>
+        {location.pathname !== "/myturns" && (
+          <p className={styles.textAvailable}>{status}</p>
+        )}
       </div>
       <div className={styles.buttonContainer}>
         {location.pathname === "/myturns" ? (

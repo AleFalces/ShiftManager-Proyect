@@ -3,7 +3,7 @@
   border: solid #0c6366 1px;
   border-radius: 25px;
   padding: 15px;
-  background-color: #e3efd7;
+  background-color: #7cd7cf;
 }
 
 .modalturn {
@@ -22,4 +22,24 @@
 .turn:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.text {
+  font-size: 22px;
+  color: #19393f;
+  line-height: 1.6;
+  max-width: 900px;
+  margin-bottom: 20px;
+}
+.textAvailable {
+  font-size: 22px;
+  color: #1b9847;
+  line-height: 1.6;
+  max-width: 900px;
+  margin-bottom: 20px;
+}
+
+.turnData {
+  display: flex;
+  justify-content: space-evenly;
 }

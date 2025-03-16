@@ -14,10 +14,10 @@ function UserPanel() {
   return (
     <div className={styles.profielContainer}>
       <div className={styles.dataContainer}>
-        <h2>My Profile</h2>
-        <p> Name: {name}</p>
-        <p>Email: {email}</p>
-        <p>Phone Number: {phone}</p>
+        <h2 className={styles.title}>My Profile</h2>
+        <p className={styles.text}> Name: {name}</p>
+        <p className={styles.text}>Email: {email}</p>
+        <p className={styles.text}>Phone Number: {phone}</p>
         <button onClick={handleDeleteUser}>Cancel your Acount</button>
       </div>
     </div>

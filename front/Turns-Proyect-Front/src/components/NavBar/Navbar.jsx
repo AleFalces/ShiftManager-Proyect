@@ -51,9 +51,7 @@ let Navbar = () => {
                 <Link to="/userPanel">
                   <button>User Panel</button>
                 </Link>
-                <Link to="/historial">
-                  <button>Historial</button>
-                </Link>
+
                 <Link>
                   <button onClick={handleLogout}>LogOut</button>
                 </Link>

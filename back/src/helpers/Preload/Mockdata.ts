@@ -47,27 +47,7 @@ export const Preloadusers = [
     type: "user",
     credentials: {
       username: "johndoe",
-      password: "password123",
-    },
-  },
-  {
-    name: "Jane Smith",
-    email: "jane.smith@example.com",
-    phone: 3456789012,
-    type: "user",
-    credentials: {
-      username: "janesmith",
-      password: "securepass456",
-    },
-  },
-  {
-    name: "Bob Johnson",
-    email: "bob.johnson@example.com",
-    phone: 4567890123,
-    type: "user",
-    credentials: {
-      username: "bobjohnson",
-      password: "bobpassword789",
+      password: "Password123.",
     },
   },
 ];

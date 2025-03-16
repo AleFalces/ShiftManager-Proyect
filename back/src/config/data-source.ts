@@ -11,7 +11,7 @@ export const AppDataSource = new DataSource({
   password: "159753qop.",
   database: "turn_proyect",
 
-  //dropSchema: true,
+  dropSchema: true,
   synchronize: true,
   logging: false,
   entities: [Credential, User, Turn],

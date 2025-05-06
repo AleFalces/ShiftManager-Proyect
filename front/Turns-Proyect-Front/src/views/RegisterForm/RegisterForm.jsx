@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./RegisterForm.module.css";
 import validate from "../../utils/Validations";
 import { postCreateUser } from "../../services/userServices";
+import useRegisterAlert from "../../utils/UseRegisterAlert";
 
 let RegisterForm = () => {
   const [FormState, setFormstate] = useState({
@@ -16,6 +17,7 @@ let RegisterForm = () => {
 
   let [Error, setError] = useState({});
   let [showErrors, setShowErrors] = useState(false);
+  const { handleRegister } = useRegisterAlert();
 
   const handlerInputs = (event) => {
     const { name, value } = event.target;
@@ -34,8 +36,7 @@ let RegisterForm = () => {
     setShowErrors(true);
 
     if (Object.keys(validationErrors).length === 0) {
-      postCreateUser(FormState);
-      alert("User registered successfully");
+      handleRegister(FormState);
     }
   };
 

@@ -27,7 +27,7 @@ const userRepository = AppDataSource.getRepository(User).extend({
       let createCredential = await createCredentialServise(userCredential);
       const datauser = {
         ...userData,
-        type: userType,
+        type: "user",
         credentials: createCredential,
       };
       const newUser = await this.create(datauser);

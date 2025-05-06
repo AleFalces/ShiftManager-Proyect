@@ -8,8 +8,14 @@ import useLogoutAlert from "../../utils/useLogoutAlert";
 let Navbar = () => {
   const user = useSelector((state) => state.users.isAuthenticated);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const { handleLogout } = useLogoutAlert();
@@ -19,50 +25,48 @@ let Navbar = () => {
     <nav>
       <div className={styles.Navbar}>
         <Link to="/">
-          <img src={logo} alt="" className={styles.logo}></img>
+          <img src={logo} alt="Logo" className={styles.logo}></img>
         </Link>
-        {location.pathname !== "/" && (
-          <Link to="/">
-            <a>Home</a>
-          </Link>
-        )}
-        {location.pathname !== "/turns" && (
-          <Link to="/turns">
-            <a>Reserve an Turn</a>
-          </Link>
-        )}
 
-        {user === true && location.pathname !== "/myturns" && (
-          <Link to="/myturns">
-            <a>My Turns</a>
-          </Link>
-        )}
-        {location.pathname !== "/about" && (
-          <Link to="/about">
-            <a>About Us</a>
-          </Link>
-        )}
+        <button
+          className={styles.mobileMenuToggle}
+          onClick={toggleMobileMenu}
+          aria-label="Toggle navigation menu"
+        >
+          {isMobileMenuOpen ? "✕" : "☰"}
+        </button>
 
-        {user === true ? (
-          <div className={styles.dropdown} onClick={toggleDropdown}>
-            <a className={styles.dropdownToggle}>User Options</a>
-            {isDropdownOpen && (
-              <div className={styles.dropdownMenu}>
-                <Link to="/userPanel">
-                  <button>User Panel</button>
-                </Link>
+        <div
+          className={`${styles.navLinks} ${
+            isMobileMenuOpen ? styles.navLinksOpen : ""
+          }`}
+        >
+          {location.pathname !== "/" && <Link to="/">Home</Link>}
+          {location.pathname !== "/turns" && (
+            <Link to="/turns">Reserve an Turn</Link>
+          )}
 
-                <Link>
+          {user === true && location.pathname !== "/myturns" && (
+            <Link to="/myturns">My Turns</Link>
+          )}
+          {location.pathname !== "/about" && <Link to="/about">About Us</Link>}
+
+          {user === true ? (
+            <div className={styles.dropdown} onClick={toggleDropdown}>
+              <span className={styles.dropdownToggle}>User Options</span>
+              {isDropdownOpen && (
+                <div className={styles.dropdownMenu}>
+                  <Link to="/userPanel">
+                    <button>User Panel</button>
+                  </Link>
                   <button onClick={handleLogout}>LogOut</button>
-                </Link>
-              </div>
-            )}
-          </div>
-        ) : (
-          <Link to="/login">
-            <a>Login</a>
-          </Link>
-        )}
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
+        </div>
       </div>
     </nav>
   );

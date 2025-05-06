@@ -1,26 +1,74 @@
-.selector {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: 2px solid #007bff;
-  border-radius: 12px;
-  background-color: #f8f9fa;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 20px;
 }
 
-.selector:focus {
-  outline: none;
-  border-color: #0056b3;
-  background-color: #e9ecef;
-}
-
-.selector:hover {
-  background-color: #e2e6ea;
-}
-
-.selector option {
+.dayColumn {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
   padding: 10px;
-  background-color: #fff;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dayTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #003049;
+}
+
+.listView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+}
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Estilo grid activado solo si no hay filtro de día */
+@media (min-width: 768px) {
+  .gridContainer.allTurnsView {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Lunes a Viernes */
+    gap: 8px;
+  }
+}
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.headerRow,
+.row {
+  display: grid;
+  grid-template-columns: 100px repeat(5, 1fr);
+  gap: 8px;
+}
+
+.timeSlotHeader,
+.dayHeader,
+.timeSlot {
+  font-weight: bold;
+  text-align: center;
+  background-color: #c8f1ee;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.cell {
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

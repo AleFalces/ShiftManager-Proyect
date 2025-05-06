@@ -4,7 +4,10 @@
   border-radius: 25px;
   padding: 15px;
   background-color: #7cd7cf;
-  margin: 5px;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .modalturn {
@@ -42,5 +45,11 @@
 
 .turnData {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .turn {
+    min-height: 100px; /* altura mínima para que todas las celdas se vean uniformes */
+  }
 }

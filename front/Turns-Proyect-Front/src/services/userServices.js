@@ -21,6 +21,7 @@ export const getUserById = async (id) => {
 };
 
 export const postCreateUser = async (userData) => {
+  console.log(userData);
   try {
     const response = await apiServices.post(`${path}/register`, userData);
     return response;

@@ -1,7 +1,7 @@
 interface IUserDto {
   name: string;
   email: string;
-  phone: number;
+  phone: string;
   type: string;
 }
 

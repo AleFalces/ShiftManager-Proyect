@@ -33,7 +33,7 @@ export const Preloadusers = [
   {
     name: "Admin User",
     email: "admin@example.com",
-    phone: 1234567890,
+    phone: "1234567890",
     type: "admin",
     credentials: {
       username: "admin",
@@ -43,7 +43,7 @@ export const Preloadusers = [
   {
     name: "John Doe",
     email: "john.doe@example.com",
-    phone: 2345678901,
+    phone: "2345678901",
     type: "user",
     credentials: {
       username: "johndoe",

@@ -1,7 +1,7 @@
 .Navbar {
-  padding: 15px 20px;
+  padding: 12px 15px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   background-color: #7cd7cf;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -13,10 +13,12 @@
 .Navbar a {
   text-decoration: none;
   color: #165c5f;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
-  margin: 0 15px;
+  margin: 8px 0;
   transition: color 0.3s ease, text-decoration 0.3s ease;
+  display: block;
+  text-align: center;
 }
 
 .Navbar a:hover {
@@ -25,22 +27,56 @@
 }
 
 .logo {
-  width: 80px;
+  width: 60px;
   border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.mobileMenuToggle {
+  display: block;
+  background: none;
+  border: none;
+  color: #165c5f;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 15px;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.navLinksOpen {
+  max-height: 300px;
 }
 
 .dropdown {
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
 }
 
 .dropdownToggle {
   background: none;
   color: #165c5f;
   border: none;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   transition: color 0.3s ease;
+  padding: 0;
+  display: block;
+  text-align: center;
 }
 
 .dropdownToggle:hover {
@@ -51,7 +87,6 @@
 .dropdownMenu {
   position: absolute;
   top: 40px;
-  right: 0;
   background-color: #f4ffe9;
   border: 1px solid #aee1d3;
   border-radius: 5px;
@@ -71,6 +106,7 @@
   padding: 8px;
   text-decoration: none;
   transition: background 0.3s ease, color 0.3s ease;
+  margin: 0;
 }
 
 .dropdownMenu a:hover {
@@ -95,4 +131,59 @@
   background-color: #aee1d3;
   color: #5e8be0;
   text-decoration: underline;
+}
+
+/* Media queries para tablets */
+@media (min-width: 768px) {
+  .Navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+
+  .logo {
+    width: 70px;
+    margin-bottom: 0;
+  }
+
+  .mobileMenuToggle {
+    display: none;
+  }
+
+  .navLinks {
+    display: flex;
+    flex-direction: row;
+    max-height: none;
+    width: auto;
+  }
+
+  .Navbar a {
+    margin: 0 10px;
+    font-size: 20px;
+  }
+
+  .dropdown {
+    width: auto;
+    margin: 0 10px;
+  }
+}
+
+/* Media queries para desktop */
+@media (min-width: 1024px) {
+  .Navbar {
+    padding: 15px 40px;
+  }
+
+  .logo {
+    width: 80px;
+  }
+
+  .Navbar a {
+    margin: 0 15px;
+    font-size: 22px;
+  }
+
+  .dropdownToggle {
+    font-size: 22px;
+  }
 }

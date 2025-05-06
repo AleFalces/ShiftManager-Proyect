@@ -5,7 +5,7 @@ import styles from "./Home.module.css";
 
 let Home = () => {
   const [textToShow, setTextToShow] = useState(homeText);
-  console.log(homeText);
+
   return (
     <div className={styles.textContainer}>
       {textToShow.map((text) => (

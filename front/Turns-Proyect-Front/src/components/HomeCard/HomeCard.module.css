@@ -1,35 +1,81 @@
-.imgHomeCard {
-  width: 50%;
-  height: 30%;
-  border-radius: 20px;
-}
-
 .cardContainer {
+  background-color: #f8f9fa;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
   width: 70%;
-  padding-bottom: 20px;
-  margin: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #7cd7cf;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+  animation: fadeInUp 0.6s ease both;
 }
 
-.text {
-  font-size: 18px;
-  color: #333;
-  line-height: 1.6;
-  max-width: 900px;
-  margin-bottom: 20px;
+.cardContainer:hover {
+  transform: scale(1.02);
+  background-color: #e3f2fd;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .title {
-  font-size: 28px;
-  color: #005f73;
-  font-weight: bold;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #005f73;
-  display: inline-block;
-  padding-bottom: 5px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  color: #333;
+}
+
+.text {
+  font-size: 1rem;
+  color: #555;
+  margin: 0.75rem 0;
+}
+
+.imgHomeCard {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  margin-top: 1rem;
+}
+
+.iconWrapper {
+  background-color: #e1f5fe;
+  padding: 0.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.icon {
+  color: #0288d1;
+  transition: color 0.3s ease;
+}
+
+.cardContainer:hover .iconWrapper {
+  background-color: #0288d1;
+}
+
+.cardContainer:hover .icon {
+  color: #ffffff;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .cardContainer {
+    width: 80%;
+    max-width: 1000px;
+  }
 }

@@ -1,4 +1,5 @@
-import "./App.css";
+import styles from "./App.module.css";
+
 import Navbar from "./components/NavBar/Navbar";
 import Home from "./views/Home/Home";
 import LoginForm from "./views/LoginForm/LoginForm";
@@ -12,19 +13,21 @@ import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
-    <>
+    <div className={styles.appContainer}>
       <Navbar />
-      <Routes>
-        <Route path={"/"} element={<Home />} />
-        <Route path={"/turns"} element={<AvailableTurns />} />
-        <Route path={"/myturns"} element={<Myturns />} />
-        <Route path={"/register"} element={<RegisterForm />} />
-        <Route path={"/login"} element={<LoginForm />} />
-        <Route path={"/userPanel"} element={<UserPanel />} />
-        <Route path={"/about"} element={<AboutUs />} />
-      </Routes>
+      <div className={styles.mainContent}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/turns" element={<AvailableTurns />} />
+          <Route path="/myturns" element={<Myturns />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/userPanel" element={<UserPanel />} />
+          <Route path="/about" element={<AboutUs />} />
+        </Routes>
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

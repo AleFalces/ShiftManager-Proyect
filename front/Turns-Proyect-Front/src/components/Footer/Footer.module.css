@@ -1,13 +1,59 @@
 .footer {
-  position: absolute;
-  bottom: 0;
-  height: 50px;
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
   background-color: #7cd7cf;
+  color: #165c5f;
+  padding: 2rem 1rem;
   margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.section h2 {
+  font-size: 1.25rem;
+  color: #165c5f;
+  margin-bottom: 0.5rem;
+}
+
+.section p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.contactList {
+  list-style: none;
+  padding: 0;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contactList li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contactList a {
+  color: #165c5f;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contactList a:hover {
+  color: #147d81;
+  text-decoration: underline;
 }

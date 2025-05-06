@@ -1,6 +1,7 @@
 .textContainer {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
   align-items: center;
-  justify-content: space-between;
 }

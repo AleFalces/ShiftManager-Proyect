@@ -41,8 +41,8 @@ const PopUp = ({ turnData, setPopUp }) => {
         showCancelButton: true,
         confirmButtonText: `Yes, ${action}`,
         cancelButtonText: "Cancel",
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {

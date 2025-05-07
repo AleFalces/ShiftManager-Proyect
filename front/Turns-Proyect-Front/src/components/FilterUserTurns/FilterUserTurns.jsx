@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import Turn from "../Turn/Turn";
 import styles from "./FilterUserTurns.module.css";
@@ -6,19 +6,19 @@ import { useNavigate } from "react-router-dom";
 
 const FilterUserTurs = () => {
   const [selectedDay, setSelectedDay] = useState("");
-  let turnsToUser = useSelector((state) => state.users.user.turns);
+  const turnsToUser = useSelector((state) => state.users.user.turns);
+  const navigate = useNavigate();
 
   const userFilteredTurns = selectedDay
     ? turnsToUser.filter((turn) => turn.day === selectedDay)
     : turnsToUser;
 
-  let navigate = useNavigate();
   const handleRedirect = () => {
     navigate("/turns");
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <select
         onChange={(e) => setSelectedDay(e.target.value)}
         value={selectedDay}
@@ -32,13 +32,13 @@ const FilterUserTurs = () => {
         <option value="Friday">Friday</option>
       </select>
 
-      <div>
+      <div className={styles.turnsList}>
         {!userFilteredTurns.length ? (
-          <div>
-            <h2 className={styles.title}>Your reserved shifts </h2>
+          <div className={styles.noTurns}>
+            <h2 className={styles.title}>Your reserved shifts</h2>
             <p>You don't have any appointments booked for that day.</p>
-            <p>You can reserve it here: </p>
-            <button onClick={handleRedirect}>reserve an appointment</button>
+            <p>You can reserve one here:</p>
+            <button onClick={handleRedirect}>Reserve an appointment</button>
           </div>
         ) : (
           userFilteredTurns.map((turn) => (

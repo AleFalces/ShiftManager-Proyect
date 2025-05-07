@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./RegisterForm.module.css";
 import validate from "../../utils/Validations";
-import { postCreateUser } from "../../services/userServices";
+
 import useRegisterAlert from "../../utils/UseRegisterAlert";
 
 let RegisterForm = () => {
@@ -41,7 +41,7 @@ let RegisterForm = () => {
   };
 
   return (
-    <div className={styles.contaierForm}>
+    <div className={styles.containerForm}>
       <h2>Register</h2>
       <form className={styles.inputsContainer} onSubmit={handlerSubmit}>
         <label>Name: </label>

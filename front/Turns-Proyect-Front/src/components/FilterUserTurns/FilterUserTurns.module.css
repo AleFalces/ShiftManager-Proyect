@@ -1,43 +1,41 @@
-.selector {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 100%;
-  padding: 8px;
+}
+
+.selector {
   font-size: 16px;
-  border: 2px solid #007bff;
-  border-radius: 12px;
-  background-color: #f8f9fa;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.selector:focus {
-  outline: none;
-  border-color: #0056b3;
-  background-color: #e9ecef;
-}
-
-.selector:hover {
-  background-color: #e2e6ea;
-}
-
-.selector option {
   padding: 10px;
-  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 200px;
 }
 
-p {
-  font-size: 18px;
-  color: #333;
-  line-height: 1.6;
-  max-width: 900px;
-  margin-bottom: 20px;
+.turnsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
+
+.noTurns {
+  text-align: center;
+}
+
 .title {
   font-size: 28px;
   color: #005f73;
   font-weight: bold;
   margin-bottom: 15px;
   border-bottom: 2px solid #005f73;
-  display: inline-block;
   padding-bottom: 5px;
+  display: inline-block;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 10px;
 }

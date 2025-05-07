@@ -1,7 +1,7 @@
 import styles from "./NavBar.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Menu,
   X,
@@ -22,9 +22,27 @@ const Navbar = () => {
   const user = useSelector((state) => state.users.isAuthenticated);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-
+  const dropdownRef = useRef(null);
   const { handleLogout } = useLogoutAlert();
   const location = useLocation();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   return (
     <nav>
@@ -62,7 +80,7 @@ const Navbar = () => {
         )}
 
         {user ? (
-          <div className={styles.dropdown}>
+          <div className={styles.dropdown} ref={dropdownRef}>
             <button
               onClick={toggleDropdown}
               className={`${styles.dropdownToggle} ${styles.navItem}`}

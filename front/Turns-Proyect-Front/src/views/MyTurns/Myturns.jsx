@@ -4,23 +4,25 @@ import { useNavigate } from "react-router-dom";
 import FilterUserTurs from "../../components/FilterUserTurns/FilterUserTurns";
 
 const Myturns = () => {
-  let turnsToUser = useSelector((state) => state.users.user.turns);
-  let navigate = useNavigate();
+  const turnsToUser = useSelector((state) => state.users.user.turns);
+  const navigate = useNavigate();
+
   const handleRedirect = () => {
     navigate("/turns");
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.turnsContainer}>
         {!turnsToUser.length ? (
-          <div>
-            <h2 className={styles.title}>Your reserved shifts </h2>
+          <div className={styles.noTurns}>
+            <h2 className={styles.title}>Your reserved shifts</h2>
             <p>You don't have any appointments reserved.</p>
-            <p>You can reserve it here: </p>
-            <button onClick={handleRedirect}>reserve an appointment </button>
+            <p>You can reserve one here:</p>
+            <button onClick={handleRedirect}>Reserve an appointment</button>
           </div>
         ) : (
-          <FilterUserTurs navigate={handleRedirect} />
+          <FilterUserTurs />
         )}
       </div>
     </div>
@@ -28,4 +30,3 @@ const Myturns = () => {
 };
 
 export default Myturns;
-// turnsToUser?.map((turn) => <Turn key={turn.turnId} turn={turn} />

@@ -14,7 +14,7 @@ const useAlertUser = () => {
       text: "You will not be able to reverse this action.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Yes, delete My USer",
+      confirmButtonText: "Yes, delete",
       cancelButtonText: "No",
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",

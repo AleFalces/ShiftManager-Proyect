@@ -1,26 +1,15 @@
 .turn {
-  font-size: large;
-  border: solid #0c6366 1px;
-  border-radius: 25px;
-  padding: 15px;
-  background-color: #7cd7cf;
-
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.modalturn {
-  font-size: large;
-  border: solid #0c6366 1px;
-  border-radius: 25px;
-  padding: 15px;
-  background-color: #e3efd7;
-}
-
-.buttonContainer {
   display: flex;
-  flex-direction: row-reverse;
+  align-items: stretch; /* Asegura altura uniforme entre hijos */
+  justify-content: space-between;
+  background-color: #7cd7cf;
+  border: 1px solid #0c6366;
+  border-radius: 16px;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-height: 130px; /* Puedes ajustar según necesidad */
 }
 
 .turn:hover {
@@ -28,28 +17,46 @@
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.text {
-  font-size: 22px;
-  color: #19393f;
-  line-height: 1.6;
-  max-width: 900px;
-  margin-bottom: 20px;
-}
-.textAvailable {
-  font-size: 22px;
-  color: #1b9847;
-  line-height: 1.6;
-  max-width: 900px;
-  margin-bottom: 20px;
+.icon {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
 }
 
 .turnData {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex: 1;
+  justify-content: center; /* Centra verticalmente los textos */
 }
-@media (min-width: 768px) {
-  .turn {
-    min-height: 100px; /* altura mínima para que todas las celdas se vean uniformes */
-  }
+
+.text,
+.textAvailable {
+  font-size: 18px;
+  color: #19393f;
+  margin-bottom: 5px;
+  min-height: 24px; /* Reserva espacio incluso si el texto está invisible */
+}
+
+.textAvailable {
+  color: #1eb352;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 8px 12px;
+  background-color: #005f73;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #023c48;
 }

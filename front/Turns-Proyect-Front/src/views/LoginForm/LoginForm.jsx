@@ -33,11 +33,12 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={styles.contaierForm}>
+    <div className={styles.containerForm}>
       <h2>Login</h2>
       <form className={styles.inputsContainer} onSubmit={handlerSubmit}>
-        <label>Username: </label>
+        <label htmlFor="username">Username:</label>
         <input
+          id="username"
           type="text"
           name="username"
           onChange={handlerInputs}
@@ -47,8 +48,9 @@ const LoginForm = () => {
           <p className={styles.error}>{error.username}</p>
         )}
 
-        <label>Password: </label>
+        <label htmlFor="password">Password:</label>
         <input
+          id="password"
           type="password"
           name="password"
           onChange={handlerInputs}
@@ -59,14 +61,12 @@ const LoginForm = () => {
         )}
 
         <button type="submit">Login</button>
-        <div>
-          <p className={styles.text}>
-            Don't have an account?{" "}
-            <Link to="/register" className={styles.link}>
-              Sign up
-            </Link>
-          </p>
-        </div>
+        <p className={styles.text}>
+          Don't have an account?{" "}
+          <Link to="/register" className={styles.link}>
+            Sign up
+          </Link>
+        </p>
       </form>
     </div>
   );

@@ -5,10 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { allTurns } from "../../../redux/turnsSlice";
 import FilterTurs from "../../components/FilterTurns/FilterTurs";
 
-let AvailableTurns = () => {
+const AvailableTurns = () => {
   const [error, setError] = useState(null);
   const allturns = useSelector((state) => state.turns);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,7 +15,6 @@ let AvailableTurns = () => {
       try {
         const data = await getAllTurns();
         dispatch(allTurns(data));
-
         setError(null);
       } catch (error) {
         setError(error.message);
@@ -30,7 +28,7 @@ let AvailableTurns = () => {
   return (
     <div className={styles.container}>
       <div className={styles.turnsContainer}>
-        {error !== null && !allturns ? <p> Data Error</p> : <FilterTurs />}
+        {error !== null && !allturns ? <p>Data Error</p> : <FilterTurs />}
       </div>
     </div>
   );

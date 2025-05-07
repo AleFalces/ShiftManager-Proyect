@@ -1,51 +1,12 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  margin-top: 20px;
-}
-
-.dayColumn {
-  background-color: #f5f5f5;
+.selector {
+  margin: 10px 0;
+  padding: 6px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 10px;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-size: 16px;
 }
 
-.dayTitle {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #003049;
-}
-
-.listView {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 16px;
-}
 .gridContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-/* Estilo grid activado solo si no hay filtro de día */
-@media (min-width: 768px) {
-  .gridContainer.allTurnsView {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Lunes a Viernes */
-    gap: 8px;
-  }
-}
-.gridContainer {
-  display: flex;
-  flex-direction: column;
   margin-top: 20px;
 }
 
@@ -67,8 +28,68 @@
 }
 
 .cell {
+  min-width: 0;
   min-height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  border-radius: 8px;
+}
+
+.listView {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.mobileDayGroup {
+  background-color: #eef9f8;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.mobileDayGroup h4 {
+  color: #003049;
+  margin-bottom: 8px;
+}
+
+/* Vista GRID solo para escritorio */
+@media (min-width: 768px) {
+  .gridContainer.allTurnsView {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.selectorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.selector {
+  padding: 12px 16px;
+  font-size: 20px;
+  border-radius: 12px;
+  border: 2px solid #005f73;
+  color: #003049;
+  background-color: #e0f7f5;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 95, 115, 0.1);
+  transition: all 0.3s ease;
+}
+
+.selector:hover {
+  background-color: #c8f1ee;
+  cursor: pointer;
+}
+
+.icon {
+  flex-shrink: 0;
 }

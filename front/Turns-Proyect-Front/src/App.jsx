@@ -8,12 +8,12 @@ import UserPanel from "./components/UserPanel/UserPanel";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Footer from "./components/Footer/Footer";
 import UserTurns from "./views/UserTurns/UserTurns";
-import NavBar from "./components/NavBar/NavBar";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <div className={styles.appContainer}>
-      <NavBar />
+      <Navbar />
       <div className={styles.mainContent}>
         <Routes>
           <Route path="/" element={<Home />} />

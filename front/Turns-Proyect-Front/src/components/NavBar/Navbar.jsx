@@ -1,4 +1,4 @@
-import styles from "./NavBar.module.css";
+import styles from "./Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useRef, useEffect } from "react";
@@ -16,7 +16,7 @@ import {
 import logo from "../../assets/istockphoto-1196233488-612x612.jpg";
 import useLogoutAlert from "../../utils/useLogoutAlert";
 
-const NavBar = () => {
+const Navbar = () => {
   const user = useSelector((state) => state.users.isAuthenticated);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
@@ -117,4 +117,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;

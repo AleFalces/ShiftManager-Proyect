@@ -8,7 +8,7 @@ import UserPanel from "./components/UserPanel/UserPanel";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Footer from "./components/Footer/Footer";
 import UserTurns from "./views/UserTurns/UserTurns";
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "./components/NavBar/Navbar";
 
 function App() {
   return (

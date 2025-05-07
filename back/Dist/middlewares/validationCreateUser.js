@@ -15,7 +15,7 @@ let validateCreateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, f
     if (typeof name !== "string" || name === "") {
         next({ message: "Name is invalid", statusCode: 400 });
     }
-    if (typeof phone !== "number") {
+    if (typeof phone !== "string" || phone === "") {
         next({ message: "Phone number invalid", statusCode: 400 });
     }
     if (typeof email !== "string" || email === "") {

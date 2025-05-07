@@ -18,9 +18,8 @@ const data_source_1 = require("../config/data-source");
 const userRepository_1 = __importDefault(require("../repositories/userRepository"));
 let getAllTurnServices = () => __awaiter(void 0, void 0, void 0, function* () {
     const allTurns = yield data_source_1.TurnSource.find({
-        relations: {
-            user: true,
-        },
+        where: { status: "available" }, // Filtra solo los turnos disponibles
+        order: { day: "ASC", time: "ASC" },
     });
     return allTurns;
 });
@@ -41,9 +40,9 @@ let createTurnServices = (turnData) => __awaiter(void 0, void 0, void 0, functio
     if (userExist === null) {
         throw Error("user dont exist");
     }
-    // if (userExist.type !== "admin") {
-    //   throw Error("This user cannot create turns.");
-    // }
+    if (userExist.type !== "admin") {
+        throw Error("This user cannot create turns.");
+    }
     if (scheduleTime === undefined) {
         throw Error("The entered time is not available");
     }
@@ -55,9 +54,9 @@ let createTurnServices = (turnData) => __awaiter(void 0, void 0, void 0, functio
             day: weekday,
             time: scheduleTime,
             userId: userExist.id,
-            status: ITurns_1.ETurnStatus.RESERVED,
+            status: ITurns_1.ETurnStatus.AVAILABLE,
         });
-        data_source_1.TurnSource.save(newTurn);
+        yield data_source_1.TurnSource.save(newTurn);
         return newTurn;
     }
 });
@@ -73,6 +72,9 @@ let reserveTurnServices = (id, turnId) => __awaiter(void 0, void 0, void 0, func
     });
     if (turnToReserve === null) {
         throw Error("Turn not  Found");
+    }
+    if (turnToReserve.status === ITurns_1.ETurnStatus.RESERVED) {
+        throw Error("This turn  is not available");
     }
     else {
         turnToReserve.user = userReserve;
@@ -105,7 +107,9 @@ let updateTurnServices = (id, turnId) => __awaiter(void 0, void 0, void 0, funct
 exports.updateTurnServices = updateTurnServices;
 let deleteTurnServices = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const turnDelete = yield data_source_1.TurnSource.findOneBy({ turnId: id });
-    const userIsAdmin = yield data_source_1.UserSource.findOneBy({ id: turnDelete === null || turnDelete === void 0 ? void 0 : turnDelete.userId });
+    const userIsAdmin = yield userRepository_1.default.findOneBy({
+        id: turnDelete === null || turnDelete === void 0 ? void 0 : turnDelete.userId,
+    });
     if (!turnDelete) {
         throw Error("turn not found");
     }

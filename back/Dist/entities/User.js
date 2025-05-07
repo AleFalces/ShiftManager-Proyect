@@ -33,8 +33,10 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "bigint" }),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)({
+        length: 20,
+    }),
+    __metadata("design:type", String)
 ], User.prototype, "phone", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

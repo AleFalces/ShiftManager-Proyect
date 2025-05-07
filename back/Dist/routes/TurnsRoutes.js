@@ -12,6 +12,6 @@ exports.turnRouter = (0, express_1.Router)();
 exports.turnRouter.get("/", turnsController_1.default.getAllTurn);
 exports.turnRouter.get("/:id", validCredentials_1.validateCredentials, turnsController_1.default.getTurnById);
 exports.turnRouter.post("/schedule", validUser_1.validateUser, validCredentials_1.validateCredentials, turnsController_1.default.createTurn);
-exports.turnRouter.put("/reserve/", turnsController_1.default.reserveTurn);
 exports.turnRouter.put("/cancel/", turnsController_1.default.updateTurn);
+exports.turnRouter.put("/reserve/", turnsController_1.default.reserveTurn);
 exports.turnRouter.delete("/cancel/:id", turnsController_1.default.deleteTurn);

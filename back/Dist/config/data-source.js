@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TurnSource = exports.CredetialSource = exports.UserSource = exports.AppDataSource = void 0;
+exports.TurnSource = exports.CredetialSource = exports.AppDataSource = void 0;
 const typeorm_1 = require("typeorm");
 const Credential_1 = require("../entities/Credential");
 const User_1 = require("../entities/User");
@@ -19,6 +19,5 @@ exports.AppDataSource = new typeorm_1.DataSource({
     subscribers: [],
     migrations: [],
 });
-exports.UserSource = exports.AppDataSource.getRepository(User_1.User);
 exports.CredetialSource = exports.AppDataSource.getRepository(Credential_1.Credential);
 exports.TurnSource = exports.AppDataSource.getRepository(Turns_1.Turn);

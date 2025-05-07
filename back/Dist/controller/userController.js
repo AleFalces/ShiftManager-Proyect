@@ -41,7 +41,7 @@ let updateUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 let loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userData = req.body;
     let loggedUser = yield (0, userServices_1.loginUserService)(userData);
-    res.status(200).send("logged succesfull");
+    res.status(200).json(loggedUser);
 });
 let deleteUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;

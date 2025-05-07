@@ -38,8 +38,8 @@ let updateTurn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).send(TurnUpdated);
 });
 let reserveTurn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId, turnId } = req.body;
-    let turnReserve = yield (0, turnsServices_1.reserveTurnServices)(userId, turnId);
+    const { id, turnId } = req.body;
+    let turnReserve = yield (0, turnsServices_1.reserveTurnServices)(id, turnId);
     res.status(200).send(turnReserve);
 });
 let deleteTurn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

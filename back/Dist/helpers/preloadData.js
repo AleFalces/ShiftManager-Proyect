@@ -8,20 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateUser = void 0;
-const userRepository_1 = __importDefault(require("../repositories/userRepository"));
-const validateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.body;
-    const user = yield userRepository_1.default.findOneBy({ id });
-    if (user) {
-        next();
+exports.preloadData = void 0;
+const data_source_1 = require("../config/data-source");
+const PreloadTurns_1 = require("./Preload/PreloadTurns");
+const PreloadUsers_1 = require("./Preload/PreloadUsers");
+const preloadData = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield data_source_1.AppDataSource.manager.transaction(() => __awaiter(void 0, void 0, void 0, function* () {
+            yield (0, PreloadUsers_1.preloadUsersData)();
+            yield (0, PreloadTurns_1.preloadTurnsData)();
+        }));
+        console.log("Database preloaded successfully");
     }
-    else {
-        next({ message: "invalid user", statusCode: 400 });
+    catch (error) {
+        console.error("Error preloading data:", error);
     }
 });
-exports.validateUser = validateUser;
+exports.preloadData = preloadData;

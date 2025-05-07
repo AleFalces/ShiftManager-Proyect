@@ -17,7 +17,6 @@ const userRepository = data_source_1.AppDataSource.getRepository(User_1.User).ex
     findById: function (id) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield this.findOneBy({ id });
-            console.log(user);
             if (user === null || user === undefined) {
                 throw Error("User not found");
             }
@@ -28,13 +27,13 @@ const userRepository = data_source_1.AppDataSource.getRepository(User_1.User).ex
     },
     userCreate: function (userData, userCredential) {
         return __awaiter(this, void 0, void 0, function* () {
-            let createCredential = yield (0, credentialServices_1.createCredentialServise)(userCredential);
             const userType = Object.values(IUser_1.EUserTypes).find((t) => t === userData.type);
             if (userType === undefined) {
                 throw Error("Please enter a valid user type");
             }
             else {
-                const datauser = Object.assign(Object.assign({}, userData), { type: userType, credentials: createCredential });
+                let createCredential = yield (0, credentialServices_1.createCredentialServise)(userCredential);
+                const datauser = Object.assign(Object.assign({}, userData), { type: "user", credentials: createCredential });
                 const newUser = yield this.create(datauser);
                 this.save(newUser);
                 return newUser;

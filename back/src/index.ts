@@ -1,8 +1,12 @@
 import server from "./server";
-import { PORT } from "./config/envs";
 import "reflect-metadata";
 import { AppDataSource } from "./config/data-source";
 import { preloadData } from "./helpers/preloadData";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const PORT = process.env.PORT || 3001;
 
 const startServer = async () => {
   try {

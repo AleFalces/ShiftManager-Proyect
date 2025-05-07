@@ -14,5 +14,5 @@ exports.userRouter.get("/", userController_1.default.getUsers);
 exports.userRouter.get("/:id", userController_1.default.getUserById);
 exports.userRouter.post("/register", validationCreateUser_1.validateCreateUser, usernameExist_1.usernameExist, userController_1.default.createUsers);
 exports.userRouter.post("/login", userController_1.default.loginUser);
-exports.userRouter.put("/", validCredentials_1.validateCredentials, userController_1.default.updateUsers);
+exports.userRouter.put("/update", validCredentials_1.validateCredentials, userController_1.default.updateUsers);
 exports.userRouter.delete("/delete/:id", userController_1.default.deleteUsers);

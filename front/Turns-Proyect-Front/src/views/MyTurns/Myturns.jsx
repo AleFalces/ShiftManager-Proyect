@@ -10,7 +10,7 @@ const MyTurns = () => {
   const handleRedirect = () => {
     navigate("/turns");
   };
-
+  //
   return (
     <div className={styles.container}>
       <div className={styles.turnsContainer}>

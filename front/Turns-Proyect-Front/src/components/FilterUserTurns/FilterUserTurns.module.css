@@ -5,12 +5,34 @@
   width: 100%;
 }
 
+.selectorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .selector {
-  font-size: 16px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 200px;
+  padding: 12px 16px;
+  font-size: 20px;
+  border-radius: 12px;
+  border: 2px solid #005f73;
+  color: #003049;
+  background-color: #e0f7f5;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 95, 115, 0.1);
+  transition: all 0.3s ease;
+}
+
+.selector:hover {
+  background-color: #c8f1ee;
+  cursor: pointer;
+}
+
+.icon {
+  flex-shrink: 0;
 }
 
 .turnsList {

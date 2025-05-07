@@ -16,6 +16,24 @@ export const PreloadTurns = [
     },
     {
       day,
+      time: ETime.TenAM,
+      status: "available",
+      userId: "0",
+    },
+    {
+      day,
+      time: ETime.ElevenAM,
+      status: "available",
+      userId: "0",
+    },
+    {
+      day,
+      time: ETime.TwelvePM,
+      status: "available",
+      userId: "0",
+    },
+    {
+      day,
       time: ETime.ThreePM,
       status: "available",
       userId: "0",
@@ -41,12 +59,12 @@ export const Preloadusers = [
     },
   },
   {
-    name: "John Doe",
-    email: "john.doe@example.com",
+    name: "ale falces",
+    email: "ale@mail..com",
     phone: "2345678901",
     type: "user",
     credentials: {
-      username: "johndoe",
+      username: "alefalces",
       password: "Password123.",
     },
   },

@@ -13,17 +13,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = __importDefault(require("./server"));
-const envs_1 = require("./config/envs");
 require("reflect-metadata");
 const data_source_1 = require("./config/data-source");
 const preloadData_1 = require("./helpers/preloadData");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const PORT = process.env.PORT || 3001;
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield data_source_1.AppDataSource.initialize();
         console.log("Database connected successfully");
         yield (0, preloadData_1.preloadData)();
-        server_1.default.listen(envs_1.PORT, () => {
-            console.log(`Server listening on port ${envs_1.PORT}`);
+        server_1.default.listen(PORT, () => {
+            console.log(`Server listening on port ${PORT}`);
         });
     }
     catch (error) {

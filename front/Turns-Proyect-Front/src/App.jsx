@@ -7,8 +7,8 @@ import RegisterForm from "./views/RegisterForm/RegisterForm";
 import { Route, Routes } from "react-router-dom";
 import UserPanel from "./components/UserPanel/UserPanel";
 import AboutUs from "./components/AboutUs/AboutUs";
-import MyTurns from "./views/MyTurns/MyTurns.jsx";
 import Footer from "./components/Footer/Footer";
+import UserTurns from "./views/UserTurns/UserTurns";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/turns" element={<AvailableTurns />} />
-          <Route path="/myturns" element={<MyTurns />} />
+          <Route path="/myturns" element={<UserTurns />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/userPanel" element={<UserPanel />} />

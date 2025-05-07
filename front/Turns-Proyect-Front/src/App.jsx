@@ -1,19 +1,19 @@
+import { Route, Routes } from "react-router-dom";
 import styles from "./App.module.css";
-import Navbar from "./components/NavBar/Navbar";
 import Home from "./views/Home/Home";
 import LoginForm from "./views/LoginForm/LoginForm";
 import AvailableTurns from "./views/AvailableTurns/AvailableTurns";
 import RegisterForm from "./views/RegisterForm/RegisterForm";
-import { Route, Routes } from "react-router-dom";
 import UserPanel from "./components/UserPanel/UserPanel";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Footer from "./components/Footer/Footer";
 import UserTurns from "./views/UserTurns/UserTurns";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   return (
     <div className={styles.appContainer}>
-      <Navbar />
+      <NavBar />
       <div className={styles.mainContent}>
         <Routes>
           <Route path="/" element={<Home />} />

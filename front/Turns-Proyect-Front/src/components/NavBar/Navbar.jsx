@@ -18,7 +18,7 @@ import {
 import logo from "../../assets/istockphoto-1196233488-612x612.jpg";
 import useLogoutAlert from "../../utils/useLogoutAlert";
 
-const Navbar = () => {
+const NavBar = () => {
   const user = useSelector((state) => state.users.isAuthenticated);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
@@ -119,4 +119,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;

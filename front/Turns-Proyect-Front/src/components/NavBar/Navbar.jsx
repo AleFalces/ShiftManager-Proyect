@@ -3,8 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useRef, useEffect } from "react";
 import {
-  Menu,
-  X,
   Home,
   CalendarClock,
   UserCircle,

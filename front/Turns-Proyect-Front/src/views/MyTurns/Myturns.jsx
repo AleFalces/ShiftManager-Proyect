@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import styles from "./Myturns.module.css";
+import styles from "./MyTurns.module.css";
 import { useNavigate } from "react-router-dom";
 import FilterUserTurs from "../../components/FilterUserTurns/FilterUserTurns";
 

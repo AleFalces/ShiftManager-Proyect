@@ -3,7 +3,7 @@ import styles from "./MyTurns.module.css";
 import { useNavigate } from "react-router-dom";
 import FilterUserTurs from "../../components/FilterUserTurns/FilterUserTurns";
 
-const MyTurns = () => {
+export const MyTurns = () => {
   const turnsToUser = useSelector((state) => state.users.user.turns);
   const navigate = useNavigate();
 

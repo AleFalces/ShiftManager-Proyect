@@ -7,8 +7,8 @@ import RegisterForm from "./views/RegisterForm/RegisterForm";
 import { Route, Routes } from "react-router-dom";
 import UserPanel from "./components/UserPanel/UserPanel";
 import AboutUs from "./components/AboutUs/AboutUs";
+import MyTurns from "./views/MyTurns/MyTurns.jsx";
 import Footer from "./components/Footer/Footer";
-import MyTurns from "./views/MyTurns/MyTurns";
 
 function App() {
   return (
